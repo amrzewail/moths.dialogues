@@ -11,6 +11,31 @@ using UnityEditor.UIElements;
 
 namespace Moths.Dialogues.Editor.Graphs
 {
+    [System.Serializable]
+    public struct SerializedDialogueGraph
+    {
+        [System.Serializable]
+        public struct SerializedConnection
+        {
+            public string outputNodeGuid;
+            public string inputNodeGuid;
+            public int outputPortIndex;
+            public int inputPortIndex;
+        }
+
+        [System.Serializable]
+        public struct SerializedNode
+        {
+            public string type;
+            public string guid;
+            public Vector2 position;
+            public string data;
+        }
+
+        public List<SerializedNode> nodes;
+        public List<SerializedConnection> connections;
+    }
+
     public class DialogueGraph : DialogueBaseGraph<Dialogue>, IRefreshable
     {
         private DialogueCreator _editor;
@@ -52,6 +77,10 @@ namespace Moths.Dialogues.Editor.Graphs
             _graphView.NodeSelected += NodeSelectedCallback;
             _graphView.NodeUnselected += NodeUnselectedCallback;
             _graphView.NodeRemoved += NodeRemovedCallback;
+
+            _graphView.serializeGraphElements = SerializeGraphElementsCallback;
+            _graphView.canPasteSerializedData = data => true;
+            _graphView.unserializeAndPaste = UnserializePasteCallback;
 
             this.Add(sidebar);
 
@@ -117,6 +146,90 @@ namespace Moths.Dialogues.Editor.Graphs
             }
         }
 
+        private string SerializeGraphElementsCallback(IEnumerable<GraphElement> elements)
+        {
+            SerializedDialogueGraph serialized;
+            serialized.nodes = new();
+            serialized.connections = new();
+            foreach(var element in elements)
+            {
+                if (element is BasicNode node)
+                {
+                    if (element is ISerializable serializable)
+                    {
+                        serialized.nodes.Add(new()
+                        {
+                            position = element.GetPosition().position,
+                            type = element.GetType().FullName,
+                            guid = node.GUID,
+                            data = serializable.Serialize()
+                        });
+                    }
+                }
+                else if (element is Edge edge)
+                {
+                    serialized.connections.Add(new()
+                    {
+                        outputNodeGuid = ((BasicNode)edge.output.node).GUID,
+                        outputPortIndex = edge.output.node.Query<Port>().ToList().IndexOf(edge.output),
+                        inputNodeGuid = ((BasicNode)edge.input.node).GUID,
+                        inputPortIndex = edge.input.node.Query<Port>().ToList().IndexOf(edge.input),
+                    });
+                }
+
+            }
+            return JsonUtility.ToJson(serialized);
+        }
+        private void UnserializePasteCallback(string operationName, string data)
+        {
+            _graphView.ClearSelection();
+
+            SerializedDialogueGraph copyData = JsonUtility.FromJson<SerializedDialogueGraph>(data);
+            if (copyData.nodes == null) return;
+
+            Dictionary<string, BasicNode> oldGuidToNewNodeMap = new();
+            foreach(var node in copyData.nodes)
+            {
+                var type = Type.GetType(node.type);
+                BasicNode newNode = null;
+                if (type == typeof(DialogueActionNode))
+                {
+                    var action = new DialogueAction(node.data);
+                    _dialogue.AddAction(action);
+                    newNode = AddDialogueNode(action, node.position - copyData.nodes[0].position);
+                }
+
+                if (newNode != null)
+                {
+                    oldGuidToNewNodeMap[node.guid] = newNode;
+
+                    _graphView.AddToSelection(newNode);
+                }
+            }
+
+            foreach (var connection in copyData.connections)
+            {
+                // Only paste the edge if BOTH connecting nodes were copied and pasted
+                if (oldGuidToNewNodeMap.TryGetValue(connection.outputNodeGuid, out BasicNode newOutputNode) &&
+                    oldGuidToNewNodeMap.TryGetValue(connection.inputNodeGuid, out BasicNode newInputNode))
+                {
+                    // Find the specific ports on the new nodes based on the port name
+                    Port outputPort = newOutputNode.Query<Port>().AtIndex(connection.outputPortIndex);
+                    Port inputPort = newInputNode.Query<Port>().AtIndex(connection.inputPortIndex);
+
+                    if (outputPort != null && inputPort != null)
+                    {
+                        Edge edge = _graphView.LinkNodes(outputPort, inputPort);
+                        _dialogue.Connections[edge.output.viewDataKey] = edge.input.viewDataKey;
+                        _graphView.AddToSelection(edge);
+                    }
+                }
+            }
+
+            EditorUtility.SetDirty(_dialogue);
+            Refresh();
+        }
+
         public void Refresh()
         {
             RefreshNodes();
@@ -148,9 +261,7 @@ namespace Moths.Dialogues.Editor.Graphs
 
             foreach (var action in _dialogue.Actions)
             {
-                var nodeMetadata = _editor.Graph.FindNodeByGuid(action.Guid, out var isNew);
-                if (isNew) nodeMetadata.position = _graphView.GetViewportCenter();
-                _graphView.AddNode(new DialogueActionNode(_dialogue, nodeMetadata, action));
+                AddDialogueNode(action);
             }
 
             foreach (var condition in _dialogue.Conditions)
@@ -173,6 +284,15 @@ namespace Moths.Dialogues.Editor.Graphs
                 if (isNew) nodeMetadata.position = _graphView.GetViewportCenter();
                 _graphView.AddNode(new DialogueOutputNode(_dialogue, nodeMetadata, output));
             }
+        }
+
+        private BasicNode AddDialogueNode(DialogueAction action, Vector3 offset = default)
+        {
+            var nodeMetadata = _editor.Graph.FindNodeByGuid(action.Guid, out var isNew);
+            if (isNew) nodeMetadata.position = _graphView.GetViewportCenter() + offset;
+            var node = new DialogueActionNode(_dialogue, nodeMetadata, action);
+            _graphView.AddNode(node);
+            return node;
         }
 
         private void RefreshConnections()

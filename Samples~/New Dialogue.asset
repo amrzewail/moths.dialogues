@@ -16,7 +16,7 @@ MonoBehaviour:
   - guid: 5d8fa388-c7d2-4f8a-9cb8-e99f99a3f80e
     position: {x: 232, y: -108}
   - guid: 2b0c4b73-0723-4950-addc-e0160d94ffec
-    position: {x: 648.173, y: -0.0000019073486}
+    position: {x: 1105.5, y: -0.0000076293945}
   - guid: 0e47f673-4284-40a4-b7f8-b3be1a9030b7
     position: {x: 549.5, y: 19.700014}
   - guid: e5081684-b019-4a31-b2e1-28b2ddc07398
@@ -24,9 +24,9 @@ MonoBehaviour:
   - guid: af541f26-8842-4959-9c68-44482c6896ed
     position: {x: 171, y: 0}
   - guid: 6e317197-eb45-4750-b4e4-f43e6bc672e3
-    position: {x: 825.173, y: -0.0000019073486}
+    position: {x: 1306.5, y: -0.0000076293945}
   - guid: 1fbc71a4-4a7f-4481-a07f-564669798f04
-    position: {x: 825, y: 101}
+    position: {x: 1333, y: 117.999985}
   - guid: 66b7b094-6a52-4d8f-8bee-1c5cd3c1fb96
     position: {x: 282, y: 163}
   - guid: b108be5e-60f0-48f1-a897-d1241396f3da
@@ -34,7 +34,7 @@ MonoBehaviour:
   - guid: 9040e8a9-0c9e-41ae-a215-eeac9d5ff37d
     position: {x: 415, y: 110}
   - guid: aee5f837-b6a5-46d2-8da3-d8843c3475be
-    position: {x: 423, y: 0}
+    position: {x: 854, y: -11}
   - guid: 5eda193c-580e-4d23-8d1f-99d212d17bf1
     position: {x: 354, y: 178}
   - guid: 66f097da-d20c-4ccc-bda1-38c171656289
@@ -67,6 +67,40 @@ MonoBehaviour:
     position: {x: 335, y: 226}
   - guid: 71a5742c-634a-426c-9f97-ef421ab16b38
     position: {x: 266, y: 219}
+  - guid: cd05336a-765b-4c8f-ad9b-8545993c35f9
+    position: {x: 453.5865, y: 18}
+  - guid: da2cbf0d-01a5-4a54-a65d-c2c6b67be39e
+    position: {x: 761.5, y: 151.5}
+  - guid: b6f98da3-9bf5-4eb7-9c3f-b7a3372651e7
+    position: {x: 647.7375, y: -38.49996}
+  - guid: f24a6ac3-dfbf-412a-a24a-ab4568eb5d5d
+    position: {x: 646.0002, y: 119.000015}
+  - guid: fccd521b-f6ef-4bc7-a3c4-81d1d2660210
+    position: {x: 821, y: 195}
+  - guid: cadae601-fcf9-4f40-8d42-8c0c2c0d1142
+    position: {x: 854, y: 243.3141}
+  - guid: d56336da-f80a-4105-b770-65adce90203e
+    position: {x: 998.0001, y: 483.5}
+  - guid: 4a3b8144-4ffa-470a-827f-e575205f14db
+    position: {x: 703, y: 435}
+  - guid: fbb81ed9-667b-4e5d-a603-1184062aa418
+    position: {x: 1050.1642, y: 286.68494}
+  - guid: 52c43146-fad2-4624-b785-32b06613f51d
+    position: {x: 1050.1642, y: 286.68494}
+  - guid: 217a51e3-6c55-412a-aa69-a639f2da385c
+    position: {x: 1050.1642, y: 286.68494}
+  - guid: 0d9c951e-9d1f-4f21-b1d3-565632b47eed
+    position: {x: 1059.9838, y: 306.15875}
+  - guid: 1592ef73-c73a-43b0-887b-ee28a99b1034
+    position: {x: 800, y: 233.49998}
+  - guid: 573a7d34-08eb-4803-bf92-1aa298455ec0
+    position: {x: 1059.9838, y: 306.15875}
+  - guid: 1f298350-aa2a-4dec-b41e-b7d3b056c8d0
+    position: {x: 1059.9838, y: 306.15875}
+  - guid: 953473a7-2944-45ac-a725-8c3b3cd00d6e
+    position: {x: 939.6362, y: 774.3237}
+  - guid: ec9b780d-597e-4b70-a4fd-b03021451b0a
+    position: {x: 939.6362, y: 774.3237}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +144,7 @@ MonoBehaviour:
   _sequences:
   - _guid: af541f26-8842-4959-9c68-44482c6896ed
     _outputGuid: ad97876b-334b-4b11-9b13-0e05ee9b379a
+    _tag: Seq1
     _lines:
     - _dialogue: {fileID: 11400000}
       _speakerGuid: 66d95a92-7513-4ed4-9784-71fe3ad5575e
@@ -169,6 +204,7 @@ MonoBehaviour:
           m_LocalVariables: []
   _choices:
   - _guid: 2b0c4b73-0723-4950-addc-e0160d94ffec
+    _tag: NewTag2
     _choices:
     - _guid: 58b3e8df-aed5-4239-ab5e-245b0102fe44
       _line:
@@ -199,14 +235,44 @@ MonoBehaviour:
   _actions:
   - _guid: aee5f837-b6a5-46d2-8da3-d8843c3475be
     _outputGuid: aa054de3-7602-4b6d-bc46-8933c11da5e2
+    _tag: ChoiceHub2
     _action:
       _object:
         rid: 7437749246525964366
+  - _guid: d56336da-f80a-4105-b770-65adce90203e
+    _outputGuid: 47b8c907-4f66-4bc5-8783-65069ebf365d
+    _tag: ChoiceHub2
+    _action:
+      _object:
+        rid: 7437749263333851207
+  - _guid: 4a3b8144-4ffa-470a-827f-e575205f14db
+    _outputGuid: 970a7885-b569-46b2-b3f3-182d5f8d6af7
+    _tag: ChoiceHub2
+    _action:
+      _object:
+        rid: 7437749263333851208
   _outputs:
   - _guid: 6e317197-eb45-4750-b4e4-f43e6bc672e3
     _name: Acceptance
+    _tag: 
   - _guid: 1fbc71a4-4a7f-4481-a07f-564669798f04
     _name: Refusal
+    _tag: Out/Refuse
+  _conditions:
+  - _guid: cd05336a-765b-4c8f-ad9b-8545993c35f9
+    _trueOutputGuid: 9c795c2c-873f-4137-b8e8-a7bddb2e0f28
+    _falseOutputGuid: 433e1041-513e-4cb0-a849-c3cbbb6336cf
+    _tag: 
+    _condition:
+      _object:
+        rid: 7437749246525964377
+  _jumps:
+  - _guid: b6f98da3-9bf5-4eb7-9c3f-b7a3372651e7
+    _outputGuid: aee5f837-b6a5-46d2-8da3-d8843c3475be
+    _targetTag: ChoiceHub2
+  - _guid: f24a6ac3-dfbf-412a-a24a-ab4568eb5d5d
+    _outputGuid: 1fbc71a4-4a7f-4481-a07f-564669798f04
+    _targetTag: Out/Refuse
   _connections:
     _pairs:
     - key: b72ceaa9-e37b-4fed-b468-4a5eb3d9fb82
@@ -219,10 +285,16 @@ MonoBehaviour:
       value: 6e317197-eb45-4750-b4e4-f43e6bc672e3
     - key: 52fcc509-303b-47ae-8ed5-bea7d0f14033
       value: 1fbc71a4-4a7f-4481-a07f-564669798f04
-    - key: ad97876b-334b-4b11-9b13-0e05ee9b379a
-      value: aee5f837-b6a5-46d2-8da3-d8843c3475be
     - key: aa054de3-7602-4b6d-bc46-8933c11da5e2
       value: 2b0c4b73-0723-4950-addc-e0160d94ffec
+    - key: ad97876b-334b-4b11-9b13-0e05ee9b379a
+      value: cd05336a-765b-4c8f-ad9b-8545993c35f9
+    - key: 9c795c2c-873f-4137-b8e8-a7bddb2e0f28
+      value: b6f98da3-9bf5-4eb7-9c3f-b7a3372651e7
+    - key: 433e1041-513e-4cb0-a849-c3cbbb6336cf
+      value: f24a6ac3-dfbf-412a-a24a-ab4568eb5d5d
+    - key: 970a7885-b569-46b2-b3f3-182d5f8d6af7
+      value: d56336da-f80a-4105-b770-65adce90203e
   references:
     version: 2
     RefIds:
@@ -248,3 +320,57 @@ MonoBehaviour:
       type: {class: WaitAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
       data:
         _time: 5
+    - rid: 7437749246525964377
+      type: {class: AllConditions, ns: Moths.Dialogues.Conditions, asm: Moths.Dialogues}
+      data:
+        _conditions:
+        - _object:
+            rid: 7437749246525964378
+    - rid: 7437749246525964378
+      type: {class: AllConditions, ns: Moths.Dialogues.Conditions, asm: Moths.Dialogues}
+      data:
+        _conditions: []
+    - rid: 7437749263333851207
+      type: {class: MultipleActions, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
+      data:
+        _actions:
+        - _object:
+            rid: 7437749263333851209
+        - _object:
+            rid: 7437749263333851210
+        - _object:
+            rid: 7437749263333851211
+    - rid: 7437749263333851208
+      type: {class: MultipleActions, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
+      data:
+        _actions:
+        - _object:
+            rid: 7437749263333851212
+        - _object:
+            rid: 7437749263333851213
+        - _object:
+            rid: 7437749263333851214
+    - rid: 7437749263333851209
+      type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
+      data:
+        _text: Start Waiting
+    - rid: 7437749263333851210
+      type: {class: WaitAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
+      data:
+        _time: 5
+    - rid: 7437749263333851211
+      type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
+      data:
+        _text: End Waiting
+    - rid: 7437749263333851212
+      type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
+      data:
+        _text: hello darkness my old friend
+    - rid: 7437749263333851213
+      type: {class: WaitAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
+      data:
+        _time: 5
+    - rid: 7437749263333851214
+      type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
+      data:
+        _text: End Waiting

@@ -12,12 +12,11 @@ namespace Moths.Dialogues
     }
 
     [System.Serializable]
-    public class DialogueAction
+    public class DialogueAction : ISerializable
     {
         [SerializeField] string _guid;
         [SerializeField] string _outputGuid;
         [SerializeField] string _tag;
-
         [SerializeField] InterfaceReference<IDialogueAction> _action;
 
         public string Description => _action ? _action.Value.Description : "No Action";
@@ -32,10 +31,22 @@ namespace Moths.Dialogues
             _outputGuid = System.Guid.NewGuid().ToString();
         }
 
+        public DialogueAction(string serializationData) : this()
+        {
+            var instance = JsonUtility.FromJson<DialogueAction>(serializationData);
+            _tag = instance.Tag;
+            _action.Copy(instance._action);
+        }
+
         public async UniTask Execute()
         {
             if (Action == null) return;
             await Action.Execute();
+        }
+
+        public string Serialize()
+        {
+            return JsonUtility.ToJson(this);
         }
     }
 }
