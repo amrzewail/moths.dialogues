@@ -1,0 +1,218 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1880141505826577032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7475d73e77e3123468f21401b57eec0a, type: 3}
+  m_Name: Graph
+  m_EditorClassIdentifier: Moths.Dialogues.Editor::Moths.Dialogues.Editor.DialogueGraphProperties
+  _nodes:
+  - guid: 5d8fa388-c7d2-4f8a-9cb8-e99f99a3f80e
+    position: {x: 232, y: -108}
+  - guid: 2b0c4b73-0723-4950-addc-e0160d94ffec
+    position: {x: 648.173, y: -0.0000019073486}
+  - guid: 0e47f673-4284-40a4-b7f8-b3be1a9030b7
+    position: {x: 549.5, y: 19.700014}
+  - guid: e5081684-b019-4a31-b2e1-28b2ddc07398
+    position: {x: 506, y: 132}
+  - guid: af541f26-8842-4959-9c68-44482c6896ed
+    position: {x: 165.00002, y: -0.9999903}
+  - guid: 6e317197-eb45-4750-b4e4-f43e6bc672e3
+    position: {x: 825.173, y: -0.0000019073486}
+  - guid: 1fbc71a4-4a7f-4481-a07f-564669798f04
+    position: {x: 825, y: 101}
+  - guid: 66b7b094-6a52-4d8f-8bee-1c5cd3c1fb96
+    position: {x: 282, y: 163}
+  - guid: b108be5e-60f0-48f1-a897-d1241396f3da
+    position: {x: 422, y: -1}
+  - guid: 9040e8a9-0c9e-41ae-a215-eeac9d5ff37d
+    position: {x: 415, y: 110}
+  - guid: aee5f837-b6a5-46d2-8da3-d8843c3475be
+    position: {x: 414, y: -1}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb35f22350c6f747b017852da398676, type: 3}
+  m_Name: New Dialogue
+  m_EditorClassIdentifier: Moths.Dialogues::Moths.Dialogues.Dialogue
+  _startingGuid: af541f26-8842-4959-9c68-44482c6896ed
+  _speakers:
+  - _guid: 1ae90377-40be-4989-bc34-1b20a8148d2b
+    _name:
+      _useLocalization: 0
+      _text: Jayne
+      _localization:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  - _guid: 66d95a92-7513-4ed4-9784-71fe3ad5575e
+    _name:
+      _useLocalization: 0
+      _text: Owyn
+      _localization:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  _sequences:
+  - _guid: af541f26-8842-4959-9c68-44482c6896ed
+    _outputGuid: ad97876b-334b-4b11-9b13-0e05ee9b379a
+    _lines:
+    - _dialogue: {fileID: 11400000}
+      _speakerGuid: 66d95a92-7513-4ed4-9784-71fe3ad5575e
+      _line:
+        _useLocalization: 0
+        _text: Hello darkness my old friend.
+        _localization:
+          m_TableReference:
+            m_TableCollectionName: 
+          m_TableEntryReference:
+            m_KeyId: 0
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+    - _dialogue: {fileID: 11400000}
+      _speakerGuid: 1ae90377-40be-4989-bc34-1b20a8148d2b
+      _line:
+        _useLocalization: 0
+        _text: No, I can't believe that.
+        _localization:
+          m_TableReference:
+            m_TableCollectionName: 
+          m_TableEntryReference:
+            m_KeyId: 0
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+    - _dialogue: {fileID: 11400000}
+      _speakerGuid: 66d95a92-7513-4ed4-9784-71fe3ad5575e
+      _line:
+        _useLocalization: 0
+        _text: Accept it...
+        _localization:
+          m_TableReference:
+            m_TableCollectionName: 
+          m_TableEntryReference:
+            m_KeyId: 0
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+    - _dialogue: {fileID: 11400000}
+      _speakerGuid: 1ae90377-40be-4989-bc34-1b20a8148d2b
+      _line:
+        _useLocalization: 0
+        _text: You are trash.
+        _localization:
+          m_TableReference:
+            m_TableCollectionName: 
+          m_TableEntryReference:
+            m_KeyId: 0
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+  _choices:
+  - _guid: 2b0c4b73-0723-4950-addc-e0160d94ffec
+    _choices:
+    - _guid: 58b3e8df-aed5-4239-ab5e-245b0102fe44
+      _line:
+        _useLocalization: 0
+        _text: Accept
+        _localization:
+          m_TableReference:
+            m_TableCollectionName: 
+          m_TableEntryReference:
+            m_KeyId: 0
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+    - _guid: 52fcc509-303b-47ae-8ed5-bea7d0f14033
+      _line:
+        _useLocalization: 0
+        _text: Refuse
+        _localization:
+          m_TableReference:
+            m_TableCollectionName: 
+          m_TableEntryReference:
+            m_KeyId: 0
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+  _actions:
+  - _guid: aee5f837-b6a5-46d2-8da3-d8843c3475be
+    _outputGuid: aa054de3-7602-4b6d-bc46-8933c11da5e2
+    _action:
+      _object:
+        rid: 7437749246525964366
+  _outputs:
+  - _guid: 6e317197-eb45-4750-b4e4-f43e6bc672e3
+    _name: Acceptance
+  - _guid: 1fbc71a4-4a7f-4481-a07f-564669798f04
+    _name: Refusal
+  _connections:
+    _pairs:
+    - key: b72ceaa9-e37b-4fed-b468-4a5eb3d9fb82
+      value: 0e47f673-4284-40a4-b7f8-b3be1a9030b7
+    - key: e480c4b1-8e8b-49e3-b037-ccf6fdbe9700
+      value: e5081684-b019-4a31-b2e1-28b2ddc07398
+    - key: 106777ac-10d8-472b-b5a8-42333a19db7e
+      value: e5081684-b019-4a31-b2e1-28b2ddc07398
+    - key: 58b3e8df-aed5-4239-ab5e-245b0102fe44
+      value: 6e317197-eb45-4750-b4e4-f43e6bc672e3
+    - key: 52fcc509-303b-47ae-8ed5-bea7d0f14033
+      value: 1fbc71a4-4a7f-4481-a07f-564669798f04
+    - key: ad97876b-334b-4b11-9b13-0e05ee9b379a
+      value: aee5f837-b6a5-46d2-8da3-d8843c3475be
+    - key: aa054de3-7602-4b6d-bc46-8933c11da5e2
+      value: 2b0c4b73-0723-4950-addc-e0160d94ffec
+  references:
+    version: 2
+    RefIds:
+    - rid: 7437749246525964366
+      type: {class: MultipleActions, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
+      data:
+        _actions:
+        - _object:
+            rid: 7437749246525964367
+        - _object:
+            rid: 7437749246525964368
+        - _object:
+            rid: 7437749246525964371
+    - rid: 7437749246525964367
+      type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
+      data:
+        _text: Start Waiting
+    - rid: 7437749246525964368
+      type: {class: WaitAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
+      data:
+        _time: 5
+    - rid: 7437749246525964371
+      type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
+      data:
+        _text: End Waiting

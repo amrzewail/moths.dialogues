@@ -1,0 +1,94 @@
+using Moths.Graphs.Editor;
+using UnityEditor;
+using UnityEditor.Experimental.GraphView;
+using UnityEditor.UIElements;
+using UnityEngine;
+using UnityEngine.UIElements;
+
+namespace Moths.Dialogues.Editor.Graphs.Nodes
+{
+    public class DialogueActionNode : BasicNode, IInspectable
+    {
+        private Dialogue _dialogue;
+        private Node _node;
+        private DialogueAction _action;
+
+        public DialogueActionNode(Dialogue dialogue, Node node, DialogueAction action) : base()
+        {
+            _dialogue = dialogue;
+            _node = node;
+            _action = action;
+
+            GUID = action.Guid;
+            position = node.position;
+
+            UpdateTexts();
+        }
+
+        private void UpdateTexts()
+        {
+            title = "No Action";
+            if (_action.Action != null) title = _action.Action.GetType().Name;
+
+            extensionContainer.Clear();
+            extensionContainer.Add(new Label(_action.Description));
+        }
+
+        public string InspectorTitle => "Action";
+
+        public override void GeneratePorts()
+        {
+            inputContainer.Clear();
+            outputContainer.Clear();
+
+            var entryPort = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, typeof(DialogueElement));
+            entryPort.portName = "In";
+            entryPort.viewDataKey = _action.Guid;
+            inputContainer.Add(entryPort);
+
+            var exitPort = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(DialogueElement));
+            exitPort.portName = "Next";
+            exitPort.viewDataKey = _action.OutputGuid;
+            outputContainer.Add(exitPort);
+        }
+
+        public VisualElement GetInspector()
+        {
+            var inspector = new VisualElement();
+            var serializedObject = new SerializedObject(_dialogue);
+
+            var actionsProp = serializedObject.FindProperty("_actions");
+            SerializedProperty actionProp = null;
+            for (int i = 0; i < actionsProp.arraySize; i++)
+            {
+                if (actionsProp.GetArrayElementAtIndex(i).FindPropertyRelative("_guid").stringValue == _action.Guid)
+                {
+                    actionProp = actionsProp.GetArrayElementAtIndex(i);
+                    break;
+                }
+            }
+
+            if (actionProp != null)
+            {
+                var actionInstanceProp = actionProp.FindPropertyRelative("_action");
+
+                var actionField = new PropertyField(actionInstanceProp, "▼");
+                actionField.Bind(serializedObject);
+
+                inspector.Add(actionField);
+
+                actionField.RegisterValueChangeCallback(change => UpdateTexts());
+            }
+
+
+            return inspector;
+        }
+
+        public override void SetPosition(Rect newPos)
+        {
+            base.SetPosition(newPos);
+            _node.position = newPos.position;
+            _node.Update();
+        }
+    }
+}

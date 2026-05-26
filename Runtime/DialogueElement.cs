@@ -1,0 +1,48 @@
+namespace Moths.Dialogues
+{
+    public struct DialogueElement
+    {
+        public enum ElementType
+        {
+            None,
+            Sequence,
+            Choices,
+            Action,
+            Output,
+        };
+        
+        private string _guid;
+        private string _outputGuid;
+        private DialogueSequence _sequence;
+        private DialogueChoices _choices;
+        private DialogueAction _action;
+        private DialogueOutput _output;
+
+        public string Guid => _guid;
+        public string OutputGuid => _outputGuid;
+        public ElementType Type { get; private set; }
+
+        public DialogueElement(string guid, string outputGuid, ElementType type)
+        {
+            this = default;
+            Type = type;
+            _guid = guid;
+            _outputGuid = outputGuid;
+        }
+
+        public DialogueElement(DialogueSequence sequence) : this(sequence.Guid, sequence.OutputGuid, ElementType.Sequence) => _sequence = sequence;
+        public DialogueElement(DialogueChoices choices) : this(choices.Guid, string.Empty, ElementType.Choices) => _choices = choices;
+        public DialogueElement(DialogueAction action) : this(action.Guid, action.OutputGuid, ElementType.Action) => _action = action;
+        public DialogueElement(DialogueOutput output) : this(output.Guid, string.Empty, ElementType.Output) => _output = output;
+
+        public static implicit operator DialogueElement(DialogueSequence element) => new(element);
+        public static implicit operator DialogueElement(DialogueChoices element) => new(element);
+        public static implicit operator DialogueElement(DialogueAction element) => new(element);
+        public static implicit operator DialogueElement(DialogueOutput element) => new(element);
+
+        public static explicit operator DialogueSequence(DialogueElement element) => element._sequence;
+        public static explicit operator DialogueChoices(DialogueElement element) => element._choices;
+        public static explicit operator DialogueAction(DialogueElement element) => element._action;
+        public static explicit operator DialogueOutput(DialogueElement element) => element._output;
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "name": "Moths.Dialogues.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:3c4641a474dbe544aafa49297e96ae9e",
+        "GUID:be4aba4923dfe824f99c081ed484c6fd",
+        "GUID:a7bf1010d189411438a9d5c6697d1ed6"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

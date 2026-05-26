@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Moths.Dialogues.Samples
+{
+    public class DialogueSample : MonoBehaviour
+    {
+        private DialogueRunner _runner = new();
+
+        [SerializeField] Dialogue _dialogue;
+
+        private void Start()
+        {
+            _runner.OnLine += DialogueLineCallback;
+            _runner.OnChoices += DialogueChoicesCallback;
+            _runner.OnAction += DialogueActionCallback;
+            _runner.OnOutput += DialogueOutputCallback;
+
+            _runner.Start(_dialogue);
+        }
+
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                _runner.Next();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha0))
+            {
+                _runner.Next(0);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                _runner.Next(1);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                _runner.Next(2);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                _runner.Next(3);
+            }
+        }
+
+        private void DialogueLineCallback(DialogueLine line)
+        {
+            Debug.Log($"[Dialogue] {line.Speaker}: {line.Line}");
+        }
+
+        private void DialogueChoicesCallback(IReadOnlyList<DialogueChoice> list)
+        {
+            Debug.Log($"[Dialogue] Choose between:");
+            int index = 0;
+            foreach(var choice in list)
+            {
+                Debug.Log($"[Dialogue] {index++}) {choice.Line}");
+            }
+        }
+
+        private void DialogueActionCallback()
+        {
+            Debug.Log($"[Dialogue] Waiting action");
+        }
+
+
+        private void DialogueOutputCallback(DialogueOutput output)
+        {
+            Debug.Log($"[Dialogue] Ended with output: {output.Name}");
+        }
+
+    }
+}
