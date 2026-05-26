@@ -8,6 +8,7 @@ namespace Moths.Dialogues.Actions
     {
         public string Description => $"Log \"{_text}\"";
 
+        [SerializeField] bool _toggle;
         [SerializeField] string _text;
         public async UniTask Execute()
         {

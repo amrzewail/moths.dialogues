@@ -14,6 +14,7 @@ namespace Moths.Dialogues.Editor.VisualElements
         public Sidebar()
         {
             this.horizontalScrollerVisibility = ScrollerVisibility.Hidden;
+            this.verticalScrollerVisibility = ScrollerVisibility.Auto;
 
             _title = new Label();
             _title.AddToClassList("sidebar-title");
