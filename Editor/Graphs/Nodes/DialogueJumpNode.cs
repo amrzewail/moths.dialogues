@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 
 namespace Moths.Dialogues.Editor.Graphs.Nodes
 {
-    public class DialogueJumpNode : BasicNode, IInspectable
+    public class DialogueJumpNode : BasicNode, IInspectable, ISerializable
     {
         private Dialogue _dialogue;
         private Node _node;
@@ -24,6 +24,11 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
             GUID = jump.Guid;
             UpdateTitle();
             position = node.position;
+        }
+
+        public string Serialize()
+        {
+            return _jump.Serialize();
         }
 
         private void UpdateTitle()
@@ -68,17 +73,26 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
             foreach (var cond in _dialogue.Conditions) guidMap[cond.Guid] = cond.Tag;
 
             var tags = tagMap.Keys.ToList();
-            tags.Add("");
             tags.Sort();
 
+            if (tags.Count == 0) tags.Add("");
+
+
+            string targetGuid = _jump.OutputGuid;
             var targetTag = "";
-            if (guidMap.TryGetValue(_jump.OutputGuid, out var tag)) targetTag = tag;
+            if (guidMap.TryGetValue(targetGuid, out var tag)) targetTag = tag;
+
+            if (string.IsNullOrEmpty(targetGuid) && tags.Count > 0)
+            {
+                targetTag = tags[0];
+                targetGuid = tagMap[targetTag];
+            }
 
             var dropdown = new PopupField<string>("Target Tag", tags, targetTag);
 
             if (_jump.TargetTag != targetTag)
             {
-                _jump.SetTarget(targetTag, _jump.OutputGuid);
+                _jump.SetTarget(targetTag, targetGuid);
                 EditorUtility.SetDirty(_dialogue);
                 UpdateTitle();
             }

@@ -16,17 +16,17 @@ MonoBehaviour:
   - guid: 5d8fa388-c7d2-4f8a-9cb8-e99f99a3f80e
     position: {x: 232, y: -108}
   - guid: 2b0c4b73-0723-4950-addc-e0160d94ffec
-    position: {x: 1105.5, y: -0.0000076293945}
+    position: {x: 1106, y: -0.00000333786}
   - guid: 0e47f673-4284-40a4-b7f8-b3be1a9030b7
     position: {x: 549.5, y: 19.700014}
   - guid: e5081684-b019-4a31-b2e1-28b2ddc07398
     position: {x: 506, y: 132}
   - guid: af541f26-8842-4959-9c68-44482c6896ed
-    position: {x: 171, y: 0}
+    position: {x: 172.52087, y: 0.000015258789}
   - guid: 6e317197-eb45-4750-b4e4-f43e6bc672e3
     position: {x: 1306.5, y: -0.0000076293945}
   - guid: 1fbc71a4-4a7f-4481-a07f-564669798f04
-    position: {x: 1333, y: 117.999985}
+    position: {x: 1339.0001, y: 119.000015}
   - guid: 66b7b094-6a52-4d8f-8bee-1c5cd3c1fb96
     position: {x: 282, y: 163}
   - guid: b108be5e-60f0-48f1-a897-d1241396f3da
@@ -34,7 +34,7 @@ MonoBehaviour:
   - guid: 9040e8a9-0c9e-41ae-a215-eeac9d5ff37d
     position: {x: 415, y: 110}
   - guid: aee5f837-b6a5-46d2-8da3-d8843c3475be
-    position: {x: 854, y: -11}
+    position: {x: 849.4374, y: -11.000002}
   - guid: 5eda193c-580e-4d23-8d1f-99d212d17bf1
     position: {x: 354, y: 178}
   - guid: 66f097da-d20c-4ccc-bda1-38c171656289
@@ -82,7 +82,7 @@ MonoBehaviour:
   - guid: d56336da-f80a-4105-b770-65adce90203e
     position: {x: 998.0001, y: 483.5}
   - guid: 4a3b8144-4ffa-470a-827f-e575205f14db
-    position: {x: 703, y: 435}
+    position: {x: 648, y: 459.1362}
   - guid: fbb81ed9-667b-4e5d-a603-1184062aa418
     position: {x: 1050.1642, y: 286.68494}
   - guid: 52c43146-fad2-4624-b785-32b06613f51d
@@ -101,6 +101,100 @@ MonoBehaviour:
     position: {x: 939.6362, y: 774.3237}
   - guid: ec9b780d-597e-4b70-a4fd-b03021451b0a
     position: {x: 939.6362, y: 774.3237}
+  - guid: 8f6858fc-8422-472e-a5ad-d96dfe2beb1e
+    position: {x: 791.6801, y: 903.50977}
+  - guid: 5484df46-330c-48ed-beb8-1a7381ec5bd2
+    position: {x: 493.68018, y: 758.50977}
+  - guid: 64050f2b-2a8a-410a-be91-374291748760
+    position: {x: 39.54276, y: 351.3221}
+  - guid: dc4e1291-75a7-45b1-b32b-fb2c51032c21
+    position: {x: 127.00003, y: 313.99997}
+  - guid: f7a2dd7f-6338-46e3-85f2-17b148f6140e
+    position: {x: 486.161, y: 267.07947}
+  - guid: ef20063e-a5f6-4aa8-b94a-e3c4b9e618ef
+    position: {x: 800, y: 255.99994}
+  - guid: e910ddf5-a498-41d3-9803-01bf9c74176c
+    position: {x: 429.9999, y: 255.51888}
+  - guid: ae436d95-710b-4341-986d-8960c7ad4022
+    position: {x: 130.0348, y: 773.3649}
+  - guid: ce7f9ae4-9b44-40a3-9515-11905c15200a
+    position: {x: 274.0348, y: 1268.365}
+  - guid: 28615b66-6ec9-44e4-ab41-6d48d48abe28
+    position: {x: -75.965195, y: 1243.365}
+  - guid: 73d249b9-e2af-4c49-86a8-677477b326c3
+    position: {x: 525.2644, y: 729.49994}
+  - guid: 5e9d27e5-b899-4e15-8990-f7ee833e7adc
+    position: {x: 238.00003, y: 657.15106}
+  - guid: 86f7a09b-0b5e-44b3-88d9-93ae05c10a95
+    position: {x: 596.9434, y: 692.75854}
+  - guid: bec34c78-692e-4f64-bdf6-b709af01604b
+    position: {x: 246.94342, y: 667.75854}
+  - guid: 01ad230c-da99-479f-b36a-09fe09eda31c
+    position: {x: 344.45996, y: 556.50006}
+  - guid: 550e6db5-fb6d-4565-bfbc-0317a0e19038
+    position: {x: -5.540024, y: 531.50006}
+  - guid: 6c0e3b3a-3674-47bc-bc2f-3ab3c0ead6ab
+    position: {x: 669, y: 270}
+  - guid: ee6310ba-1787-464c-a9ce-b7a8bea95505
+    position: {x: 444, y: 227}
+  - guid: 4e3b9f91-c6ef-4963-b5c6-60df9d303370
+    position: {x: 407, y: 250}
+  - guid: d22f5d9e-d163-49f9-a670-bf1806cdaee4
+    position: {x: 609, y: 250}
+  - guid: b84ba1dd-f71a-42ad-ae40-32b623aef831
+    position: {x: 615, y: 382.00003}
+  - guid: 36725ef3-dadf-41c4-968d-686d6938d23d
+    position: {x: 1924.5245, y: 522.694}
+  - guid: 5710a76f-cbf7-42a0-94e7-5b0df0fd1e18
+    position: {x: 1658.4525, y: 495.99997}
+  - guid: c7051dd3-0757-476e-a240-36fc87ac2eac
+    position: {x: 2125.5244, y: 522.694}
+  - guid: a65317fb-3380-4cf7-b025-d9b6f56ed6a9
+    position: {x: 2151.5244, y: 640.694}
+  - guid: 431ceac6-a7f7-43e3-ae02-b161852e2bcb
+    position: {x: 864, y: 210.5475}
+  - guid: 24dd2aff-25aa-49a5-8ffb-f514d56b5d52
+    position: {x: 1070.5637, y: 261.19376}
+  - guid: b407bf01-edb2-4f22-9958-312c0bbb5d3c
+    position: {x: 818.5637, y: 250.19376}
+  - guid: 72811b50-d938-4430-bbf8-e2b30e613574
+    position: {x: 1070.5637, y: 261.19376}
+  - guid: 92a9ee4b-4bdd-4e67-a5c5-7466e0909abf
+    position: {x: 1271.5637, y: 261.19376}
+  - guid: a5514a21-15fb-4670-8cbf-064dc3c93987
+    position: {x: 1297.5637, y: 379.19376}
+  - guid: d1d7c7c4-86d9-4aac-813d-2c6787e6fde3
+    position: {x: 669.355, y: 314.57504}
+  - guid: f264ad1e-b947-4c1a-9b71-98c2dd070222
+    position: {x: 606, y: 316}
+  - guid: f6b63cc5-71f6-48ca-88e7-43d8bfa364b1
+    position: {x: 657.4001, y: 444.40002}
+  - guid: 806efe15-edf4-4ba7-9645-5da57d601d17
+    position: {x: 1019.6461, y: 171.00003}
+  - guid: 83cda651-39be-4499-b245-8bbbcd2afeef
+    position: {x: 970, y: 424}
+  - guid: 603f5a27-02dc-47cf-9d6b-6a90a4b67b32
+    position: {x: 1270, y: 466}
+  - guid: a50396f8-293c-4a01-a340-711c7264e62e
+    position: {x: 1255, y: 507.10788}
+  - guid: a7ccb677-3c8d-4a69-872d-6e97c352148f
+    position: {x: 997.9999, y: 496.10788}
+  - guid: c7eb5338-b79e-4ae8-9d4a-2d8f08b95987
+    position: {x: 1169, y: 678.10785}
+  - guid: 5d0cba32-3bfb-4202-89d9-0aac6f7a6058
+    position: {x: 1456, y: 507.10788}
+  - guid: 79b9405a-8f5f-440b-92df-c78078907ead
+    position: {x: 1488, y: 626.10785}
+  - guid: d1ccead4-1a35-4dab-bb8c-af1a47b80b2a
+    position: {x: 1188.5259, y: 653.845}
+  - guid: 8e1b4b07-aa4e-4c30-a378-d6efadab7b40
+    position: {x: 931.5258, y: 642.845}
+  - guid: bd6bd05e-33ae-420d-a026-52f1ae770664
+    position: {x: 1102.5259, y: 824.8449}
+  - guid: 3a7a1b96-a761-4fd6-9ae0-ba9f86fb6ebb
+    position: {x: 1389.5259, y: 653.845}
+  - guid: 6c4880a2-fe46-49a9-9717-3ee631510771
+    position: {x: 1421.5259, y: 772.845}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bb35f22350c6f747b017852da398676, type: 3}
   m_Name: New Dialogue
   m_EditorClassIdentifier: Moths.Dialogues::Moths.Dialogues.Dialogue
-  _startingGuid: af541f26-8842-4959-9c68-44482c6896ed
+  _startingGuid: aee5f837-b6a5-46d2-8da3-d8843c3475be
   _speakers:
   - _guid: 1ae90377-40be-4989-bc34-1b20a8148d2b
     _name:
@@ -239,18 +333,12 @@ MonoBehaviour:
     _action:
       _object:
         rid: 7437749246525964366
-  - _guid: d56336da-f80a-4105-b770-65adce90203e
-    _outputGuid: 47b8c907-4f66-4bc5-8783-65069ebf365d
+  - _guid: 806efe15-edf4-4ba7-9645-5da57d601d17
+    _outputGuid: 4d40cc8d-51c7-48a9-84ec-93cdd86ec456
     _tag: ChoiceHub2
     _action:
       _object:
-        rid: 7437749263333851207
-  - _guid: 4a3b8144-4ffa-470a-827f-e575205f14db
-    _outputGuid: 970a7885-b569-46b2-b3f3-182d5f8d6af7
-    _tag: ChoiceHub2
-    _action:
-      _object:
-        rid: 7437749263333851208
+        rid: 7437749263333851331
   _outputs:
   - _guid: 6e317197-eb45-4750-b4e4-f43e6bc672e3
     _name: Acceptance
@@ -285,16 +373,16 @@ MonoBehaviour:
       value: 6e317197-eb45-4750-b4e4-f43e6bc672e3
     - key: 52fcc509-303b-47ae-8ed5-bea7d0f14033
       value: 1fbc71a4-4a7f-4481-a07f-564669798f04
-    - key: aa054de3-7602-4b6d-bc46-8933c11da5e2
-      value: 2b0c4b73-0723-4950-addc-e0160d94ffec
     - key: ad97876b-334b-4b11-9b13-0e05ee9b379a
       value: cd05336a-765b-4c8f-ad9b-8545993c35f9
     - key: 9c795c2c-873f-4137-b8e8-a7bddb2e0f28
       value: b6f98da3-9bf5-4eb7-9c3f-b7a3372651e7
     - key: 433e1041-513e-4cb0-a849-c3cbbb6336cf
       value: f24a6ac3-dfbf-412a-a24a-ab4568eb5d5d
-    - key: 970a7885-b569-46b2-b3f3-182d5f8d6af7
-      value: d56336da-f80a-4105-b770-65adce90203e
+    - key: aa054de3-7602-4b6d-bc46-8933c11da5e2
+      value: 806efe15-edf4-4ba7-9645-5da57d601d17
+    - key: 4d40cc8d-51c7-48a9-84ec-93cdd86ec456
+      value: 2b0c4b73-0723-4950-addc-e0160d94ffec
   references:
     version: 2
     RefIds:
@@ -330,47 +418,25 @@ MonoBehaviour:
       type: {class: AllConditions, ns: Moths.Dialogues.Conditions, asm: Moths.Dialogues}
       data:
         _conditions: []
-    - rid: 7437749263333851207
+    - rid: 7437749263333851331
       type: {class: MultipleActions, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
       data:
         _actions:
         - _object:
-            rid: 7437749263333851209
+            rid: 7437749263333851332
         - _object:
-            rid: 7437749263333851210
+            rid: 7437749263333851333
         - _object:
-            rid: 7437749263333851211
-    - rid: 7437749263333851208
-      type: {class: MultipleActions, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
-      data:
-        _actions:
-        - _object:
-            rid: 7437749263333851212
-        - _object:
-            rid: 7437749263333851213
-        - _object:
-            rid: 7437749263333851214
-    - rid: 7437749263333851209
+            rid: 7437749263333851334
+    - rid: 7437749263333851332
       type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
       data:
         _text: Start Waiting
-    - rid: 7437749263333851210
+    - rid: 7437749263333851333
       type: {class: WaitAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
       data:
-        _time: 5
-    - rid: 7437749263333851211
-      type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
-      data:
-        _text: End Waiting
-    - rid: 7437749263333851212
-      type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
-      data:
-        _text: hello darkness my old friend
-    - rid: 7437749263333851213
-      type: {class: WaitAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
-      data:
-        _time: 5
-    - rid: 7437749263333851214
+        _time: 7.21
+    - rid: 7437749263333851334
       type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
       data:
         _text: End Waiting

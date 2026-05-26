@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Moths.Dialogues
 {
     [System.Serializable]
-    public class DialogueCondition
+    public class DialogueCondition : ISerializable
     {
         [SerializeField] string _guid;
         [SerializeField] string _trueOutputGuid;
@@ -25,6 +25,18 @@ namespace Moths.Dialogues
             _guid = System.Guid.NewGuid().ToString();
             _trueOutputGuid = System.Guid.NewGuid().ToString();
             _falseOutputGuid = System.Guid.NewGuid().ToString();
+        }
+
+        public DialogueCondition(string serializationData) : this()
+        {
+            var instance = JsonUtility.FromJson<DialogueCondition>(serializationData);
+            _tag = instance.Tag;
+            _condition.Copy(instance._condition);
+        }
+
+        public string Serialize()
+        {
+            return JsonUtility.ToJson(this);
         }
 
         public bool Check()

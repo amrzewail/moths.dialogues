@@ -47,7 +47,7 @@ Button:active
 
 
 Sidebar {
-	height: 100%;
+	height: auto;
 	width: 200px;
 	margin: 5px;
 	border-width: 1px;
@@ -64,7 +64,7 @@ Sidebar {
 .right-align {
     position: absolute;
     right: 0;
-	height: 75%;
+	height: auto;
 }
 
 .sidebar-title {
@@ -75,8 +75,16 @@ Sidebar {
 }
 
 .sidebar-element-btn{
-	width: 150px;
-	height: 35px;
+	width: 45px;
+	height: 45px;
+}
+
+.sidebar-element-btn .unity-image{
+	position: absolute;
+	right: 0px;
+	left: 0px;
+	bottom: 0px;
+	top: 0px;
 }
 
 Sidebar Category {

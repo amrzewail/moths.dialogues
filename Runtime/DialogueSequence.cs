@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Moths.Dialogues
 {
     [System.Serializable]
-    public class DialogueSequence
+    public class DialogueSequence : ISerializable
     {
         [SerializeField] string _guid;
         [SerializeField] string _outputGuid;
@@ -20,6 +20,18 @@ namespace Moths.Dialogues
         {
             _guid = System.Guid.NewGuid().ToString();
             _outputGuid = System.Guid.NewGuid().ToString();
+        }
+
+        public DialogueSequence(string serializationData) : this()
+        {
+            var instance = JsonUtility.FromJson<DialogueSequence>(serializationData);
+            _tag = instance.Tag;
+            _lines = new List<DialogueLine>(instance._lines);
+        }
+
+        public string Serialize()
+        {
+            return JsonUtility.ToJson(this);
         }
 
         public bool TryGetLine(int index, out DialogueLine line)

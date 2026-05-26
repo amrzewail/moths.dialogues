@@ -124,7 +124,9 @@ namespace Moths.Dialogues.Editor
             }
 
             DialogueCreator window = EditorWindow.CreateWindow<DialogueCreator>();
-            window.titleContent = new GUIContent("Dialogue Creator");
+
+            Texture2D icon = Resources.Load<Texture2D>("Moths.Dialogues/icon_dialogue");
+            window.titleContent = new GUIContent("Dialogue Creator", icon);
             window._properties = graphProperties;
             window._dialogue = dialogueAsset;
 

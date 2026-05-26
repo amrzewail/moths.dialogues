@@ -51,12 +51,19 @@ namespace Moths.Dialogues.Editor.Graphs
 
             var editCategory = sidebar.AddCategory("ELEMENTS");
 
-            Button newSequenceBtn = new Button(() => NewElementCallback<DialogueSequence>(_dialogue.AddSequence)) { text = "New Sequence" };
-            Button newChoicesBtn = new Button(() => NewElementCallback<DialogueChoices>(_dialogue.AddChoices)) { text = "New Choices" };
-            Button newConditionBtn = new Button(() => NewElementCallback<DialogueCondition>(_dialogue.AddCondition)) { text = "New Condition" };
-            Button newActionBtn = new Button(() => NewElementCallback<DialogueAction>(_dialogue.AddAction)) { text = "New Action" };
-            Button newJumpBtn = new Button(() => NewElementCallback<DialogueJump>(_dialogue.AddJump)) { text = "New Jump" };
-            Button newOutputBtn = new Button(() => NewElementCallback<DialogueOutput>(_dialogue.AddOutput)) { text = "New Output" };
+            Button newSequenceBtn = new Button(() => NewElementCallback<DialogueSequence>(_dialogue.AddSequence)) { tooltip = "Sequence" };
+            Button newChoicesBtn = new Button(() => NewElementCallback<DialogueChoices>(_dialogue.AddChoices)) { tooltip = "Choices" };
+            Button newConditionBtn = new Button(() => NewElementCallback<DialogueCondition>(_dialogue.AddCondition)) { tooltip = "Condition" };
+            Button newActionBtn = new Button(() => NewElementCallback<DialogueAction>(_dialogue.AddAction)) { tooltip = "Action" };
+            Button newJumpBtn = new Button(() => NewElementCallback<DialogueJump>(_dialogue.AddJump)) { tooltip = "Jump" };
+            Button newOutputBtn = new Button(() => NewElementCallback<DialogueOutput>(_dialogue.AddOutput)) { tooltip = "Output" };
+
+            newSequenceBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_sequence");
+            newChoicesBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_choices");
+            newConditionBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_condition");
+            newActionBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_action");
+            newJumpBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_jump");
+            newOutputBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_output");
 
             newSequenceBtn.AddToClassList("sidebar-element-btn");
             newChoicesBtn.AddToClassList("sidebar-element-btn");
@@ -186,6 +193,7 @@ namespace Moths.Dialogues.Editor.Graphs
 
             SerializedDialogueGraph copyData = JsonUtility.FromJson<SerializedDialogueGraph>(data);
             if (copyData.nodes == null) return;
+            List<string> elementsToSelect = new List<string>();
 
             Dictionary<string, BasicNode> oldGuidToNewNodeMap = new();
             foreach(var node in copyData.nodes)
@@ -198,12 +206,41 @@ namespace Moths.Dialogues.Editor.Graphs
                     _dialogue.AddAction(action);
                     newNode = AddDialogueNode(action, node.position - copyData.nodes[0].position);
                 }
+                else if (type == typeof(DialogueSequenceNode))
+                {
+                    var sequence = new DialogueSequence(node.data);
+                    _dialogue.AddSequence(sequence);
+                    newNode = AddDialogueNode(sequence, node.position - copyData.nodes[0].position);
+                }
+                else if (type == typeof(DialogueChoicesNode))
+                {
+                    var choices = new DialogueChoices(node.data);
+                    _dialogue.AddChoices(choices);
+                    newNode = AddDialogueNode(choices, node.position - copyData.nodes[0].position);
+                }
+                else if (type == typeof(DialogueConditionNode))
+                {
+                    var condition = new DialogueCondition(node.data);
+                    _dialogue.AddCondition(condition);
+                    newNode = AddDialogueNode(condition, node.position - copyData.nodes[0].position);
+                }
+                else if (type == typeof(DialogueJumpNode))
+                {
+                    var jump = new DialogueJump(node.data);
+                    _dialogue.AddJump(jump);
+                    newNode = AddDialogueNode(jump, node.position - copyData.nodes[0].position);
+                }
+                else if (type == typeof(DialogueOutputNode))
+                {
+                    var output = new DialogueOutput(node.data);
+                    _dialogue.AddOutput(output);
+                    newNode = AddDialogueNode(output, node.position - copyData.nodes[0].position);
+                }
 
                 if (newNode != null)
                 {
                     oldGuidToNewNodeMap[node.guid] = newNode;
-
-                    _graphView.AddToSelection(newNode);
+                    elementsToSelect.Add(newNode.GUID);
                 }
             }
 
@@ -221,13 +258,21 @@ namespace Moths.Dialogues.Editor.Graphs
                     {
                         Edge edge = _graphView.LinkNodes(outputPort, inputPort);
                         _dialogue.Connections[edge.output.viewDataKey] = edge.input.viewDataKey;
-                        _graphView.AddToSelection(edge);
                     }
                 }
             }
 
             EditorUtility.SetDirty(_dialogue);
             Refresh();
+
+
+            _graphView.schedule.Execute(() =>
+            {
+                foreach (var element in elementsToSelect)
+                {
+                    _graphView.AddToSelection(_graphView.GetNodeByGUID(element));
+                }
+            });
         }
 
         public void Refresh()
@@ -243,47 +288,12 @@ namespace Moths.Dialogues.Editor.Graphs
             var startNode = new DialogueStartNode(_dialogue, "Dialogue Start");
             _graphView.AddNode(startNode);
 
-            foreach (var sequence in _dialogue.Sequences)
-            {
-                var nodeMetadata = _editor.Graph.FindNodeByGuid(sequence.Guid, out var isNew);
-                if (isNew) nodeMetadata.position = _graphView.GetViewportCenter();
-                _graphView.AddNode(new DialogueSequenceNode(_dialogue, nodeMetadata, sequence));
-            }
-
-            foreach (var choices in _dialogue.Choices)
-            {
-                var nodeMetadata = _editor.Graph.FindNodeByGuid(choices.Guid, out var isNew);
-                if (isNew) nodeMetadata.position = _graphView.GetViewportCenter();
-                var choicesNode = new DialogueChoicesNode(_dialogue, nodeMetadata, choices);
-                _graphView.AddNode(choicesNode);
-                choicesNode.PortsUpdated += RefreshConnections;
-            }
-
-            foreach (var action in _dialogue.Actions)
-            {
-                AddDialogueNode(action);
-            }
-
-            foreach (var condition in _dialogue.Conditions)
-            {
-                var nodeMetadata = _editor.Graph.FindNodeByGuid(condition.Guid, out var isNew);
-                if (isNew) nodeMetadata.position = _graphView.GetViewportCenter();
-                _graphView.AddNode(new DialogueConditionNode(_dialogue, nodeMetadata, condition));
-            }
-
-            foreach (var jump in _dialogue.Jumps)
-            {
-                var nodeMetadata = _editor.Graph.FindNodeByGuid(jump.Guid, out var isNew);
-                if (isNew) nodeMetadata.position = _graphView.GetViewportCenter();
-                _graphView.AddNode(new DialogueJumpNode(_dialogue, nodeMetadata, jump));
-            }
-
-            foreach (var output in _dialogue.Outputs)
-            {
-                var nodeMetadata = _editor.Graph.FindNodeByGuid(output.Guid, out var isNew);
-                if (isNew) nodeMetadata.position = _graphView.GetViewportCenter();
-                _graphView.AddNode(new DialogueOutputNode(_dialogue, nodeMetadata, output));
-            }
+            foreach (var sequence in _dialogue.Sequences) AddDialogueNode(sequence);
+            foreach (var choices in _dialogue.Choices) AddDialogueNode(choices);
+            foreach (var action in _dialogue.Actions) AddDialogueNode(action);
+            foreach (var condition in _dialogue.Conditions) AddDialogueNode(condition);
+            foreach (var jump in _dialogue.Jumps) AddDialogueNode(jump);
+            foreach (var output in _dialogue.Outputs) AddDialogueNode(output);
         }
 
         private BasicNode AddDialogueNode(DialogueAction action, Vector3 offset = default)
@@ -291,6 +301,52 @@ namespace Moths.Dialogues.Editor.Graphs
             var nodeMetadata = _editor.Graph.FindNodeByGuid(action.Guid, out var isNew);
             if (isNew) nodeMetadata.position = _graphView.GetViewportCenter() + offset;
             var node = new DialogueActionNode(_dialogue, nodeMetadata, action);
+            _graphView.AddNode(node);
+            return node;
+        }
+
+        private BasicNode AddDialogueNode(DialogueSequence sequence, Vector3 offset = default)
+        {
+            var nodeMetadata = _editor.Graph.FindNodeByGuid(sequence.Guid, out var isNew);
+            if (isNew) nodeMetadata.position = _graphView.GetViewportCenter() + offset;
+            var node = new DialogueSequenceNode(_dialogue, nodeMetadata, sequence);
+            _graphView.AddNode(node);
+            return node;
+        }
+
+        private BasicNode AddDialogueNode(DialogueChoices choices, Vector3 offset = default)
+        {
+            var nodeMetadata = _editor.Graph.FindNodeByGuid(choices.Guid, out var isNew);
+            if (isNew) nodeMetadata.position = _graphView.GetViewportCenter() + offset;
+            var node = new DialogueChoicesNode(_dialogue, nodeMetadata, choices);
+            _graphView.AddNode(node);
+            node.PortsUpdated += RefreshConnections;
+            return node;
+        }
+
+        private BasicNode AddDialogueNode(DialogueCondition condition, Vector3 offset = default)
+        {
+            var nodeMetadata = _editor.Graph.FindNodeByGuid(condition.Guid, out var isNew);
+            if (isNew) nodeMetadata.position = _graphView.GetViewportCenter() + offset;
+            var node = new DialogueConditionNode(_dialogue, nodeMetadata, condition);
+            _graphView.AddNode(node);
+            return node;
+        }
+
+        private BasicNode AddDialogueNode(DialogueJump jump, Vector3 offset = default)
+        {
+            var nodeMetadata = _editor.Graph.FindNodeByGuid(jump.Guid, out var isNew);
+            if (isNew) nodeMetadata.position = _graphView.GetViewportCenter() + offset;
+            var node = new DialogueJumpNode(_dialogue, nodeMetadata, jump);
+            _graphView.AddNode(node);
+            return node;
+        }
+
+        private BasicNode AddDialogueNode(DialogueOutput output, Vector3 offset = default)
+        {
+            var nodeMetadata = _editor.Graph.FindNodeByGuid(output.Guid, out var isNew);
+            if (isNew) nodeMetadata.position = _graphView.GetViewportCenter() + offset;
+            var node = new DialogueOutputNode(_dialogue, nodeMetadata, output);
             _graphView.AddNode(node);
             return node;
         }

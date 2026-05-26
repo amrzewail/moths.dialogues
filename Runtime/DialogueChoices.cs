@@ -17,31 +17,45 @@ namespace Moths.Dialogues
             _guid = guid;
         }
 
+        public DialogueChoice(string guid, LString line)
+        {
+            _guid = guid;
+            _line = line;
+        }
+
         public string Guid => _guid;
         public LString Line => _line;
     }
 
     [System.Serializable]
-    public class DialogueChoices
+    public class DialogueChoices : ISerializable
     {
         [SerializeField] string _guid;
         [SerializeField] string _tag;
         [SerializeField] List<DialogueChoice> _choices = new();
+
+        public string Guid => _guid;
+        public string Tag => _tag;
+        public IReadOnlyList<DialogueChoice> Choices => _choices;
 
         public DialogueChoices()
         {
             _guid = System.Guid.NewGuid().ToString();
         }
 
-        public string Guid => _guid;
-        public string Tag => _tag;
-        public IReadOnlyList<DialogueChoice> Choices => _choices;
+        public DialogueChoices(string serializationData) : this()
+        {
+            var instance = JsonUtility.FromJson<DialogueChoices>(serializationData);
+            _tag = instance.Tag;
+            foreach (var choice in instance._choices)
+            {
+                _choices.Add(new DialogueChoice(System.Guid.NewGuid().ToString(), choice.Line));
+            }
+        }
 
-        public void AddChoice(DialogueChoice choice) => _choices.Add(choice);
-        public void RemoveChoice(string guid) => _choices.RemoveAll(c => c.Guid == guid);
-
-#if UNITY_EDITOR
-        public IList GetChoicesList() => _choices;
-#endif
+        public string Serialize()
+        {
+            return JsonUtility.ToJson(this);
+        }
     }
 }

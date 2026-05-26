@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace Moths.Dialogues.Editor.Graphs.Nodes
 {
-    public class DialogueOutputNode : BasicNode, IInspectable
+    public class DialogueOutputNode : BasicNode, IInspectable, ISerializable
     {
         private Dialogue _dialogue;
         private Node _node;
@@ -22,6 +22,11 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
             GUID = output.Guid;
             UpdateTitle();
             position = node.position;
+        }
+
+        public string Serialize()
+        {
+            return _output.Serialize();
         }
 
         private void UpdateTitle()
