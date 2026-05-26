@@ -3,12 +3,13 @@ using UnityEngine;
 
 namespace Moths.Dialogues.Actions
 {
-    public class WaitAction : DialogueActionBase
+    [System.Serializable]
+    public class WaitAction : IDialogueAction
     {
-        public override string Description => $"Wait for {_time} seconds";
+        public string Description => $"Wait for {_time} seconds";
 
         [SerializeField] float _time;
-        public override async UniTask Execute()
+        public async UniTask Execute()
         {
             await UniTask.WaitForSeconds(_time);
         }

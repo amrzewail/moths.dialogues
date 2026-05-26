@@ -8,10 +8,12 @@ namespace Moths.Dialogues
     {
         [SerializeField] string _guid;
         [SerializeField] string _outputGuid;
+        [SerializeField] string _tag;
         [SerializeField] List<DialogueLine> _lines = new();
 
         public string Guid => _guid;
         public string OutputGuid => _outputGuid;
+        public string Tag => _tag;
         public IReadOnlyList<DialogueLine> Lines => _lines;
 
         public DialogueSequence()

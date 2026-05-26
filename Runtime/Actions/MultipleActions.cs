@@ -4,11 +4,12 @@ using UnityEngine;
 
 namespace Moths.Dialogues.Actions
 {
-    public class MultipleActions : DialogueActionBase
+    [System.Serializable]
+    public class MultipleActions : IDialogueAction
     {
-        [SerializeField] InterfaceReference<DialogueActionBase>[] _actions;
+        [SerializeField] InterfaceReference<IDialogueAction>[] _actions;
 
-        public override string Description
+        public string Description
         {
             get
             {
@@ -16,13 +17,13 @@ namespace Moths.Dialogues.Actions
                 for (int i = 0; i < _actions.Length; i++)
                 {
                     name += _actions[i].Value.Description;
-                    if (i < _actions.Length - 1) name += "\n";
+                    if (i < _actions.Length - 1) name += "\n\n";
                 }
                 return name;
             }
         }
 
-        public override async UniTask Execute()
+        public async UniTask Execute()
         {
             for (int i = 0; i < _actions.Length; i++) await _actions[i].Value.Execute();
         }

@@ -24,8 +24,13 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
             _choices = choices;
 
             GUID = choices.Guid;
-            title = "Choices";
+            UpdateTitle();
             position = node.position;
+        }
+
+        private void UpdateTitle()
+        {
+            title = string.IsNullOrEmpty(_choices.Tag) ? "Choices" : $"Choices ({_choices.Tag})";
         }
 
         public string InspectorTitle => "Choices";
@@ -66,6 +71,14 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
                     choicesProp = choicesListProp.GetArrayElementAtIndex(i);
                     break;
                 }
+            }
+
+            if (choicesProp != null)
+            {
+                var tagField = new PropertyField(choicesProp.FindPropertyRelative("_tag"), "Tag");
+                tagField.Bind(serializedObject);
+                tagField.RegisterValueChangeCallback(evt => UpdateTitle());
+                inspector.Add(tagField);
             }
 
             var listProp = choicesProp.FindPropertyRelative("_choices");

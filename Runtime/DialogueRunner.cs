@@ -100,6 +100,18 @@ namespace Moths.Dialogues
                     ProcessCurrentElement().Forget();
                     break;
 
+                case DialogueElement.ElementType.Condition:
+                    var condition = (DialogueCondition)_currentElement;
+                    string nextGuid = condition.Check() ? condition.TrueOutputGuid : condition.FalseOutputGuid;
+                    _currentElement = _currentDialogue.Next(nextGuid);
+                    ProcessCurrentElement().Forget();
+                    break;
+
+                case DialogueElement.ElementType.Jump:
+                    _currentElement = _currentDialogue.Next(_currentElement);
+                    ProcessCurrentElement().Forget();
+                    break;
+
                 case DialogueElement.ElementType.Output:
                     var output = (DialogueOutput)_currentElement;
                     OnOutput?.Invoke(output);

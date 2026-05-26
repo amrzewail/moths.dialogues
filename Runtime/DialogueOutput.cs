@@ -7,6 +7,7 @@ namespace Moths.Dialogues
     {
         [SerializeField] string _guid;
         [SerializeField] string _name;
+        [SerializeField] string _tag;
 
         public DialogueOutput()
         {
@@ -16,5 +17,6 @@ namespace Moths.Dialogues
 
         public string Guid => _guid;
         public string Name => _name;
+        public string Tag => _tag;
     }
 }

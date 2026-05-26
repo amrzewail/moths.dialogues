@@ -25,6 +25,7 @@ namespace Moths.Dialogues
     public class DialogueChoices
     {
         [SerializeField] string _guid;
+        [SerializeField] string _tag;
         [SerializeField] List<DialogueChoice> _choices = new();
 
         public DialogueChoices()
@@ -33,6 +34,7 @@ namespace Moths.Dialogues
         }
 
         public string Guid => _guid;
+        public string Tag => _tag;
         public IReadOnlyList<DialogueChoice> Choices => _choices;
 
         public void AddChoice(DialogueChoice choice) => _choices.Add(choice);

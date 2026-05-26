@@ -5,11 +5,10 @@ using UnityEngine;
 
 namespace Moths.Dialogues
 {
-    [System.Serializable]
-    public abstract class DialogueActionBase
+    public interface IDialogueAction
     {
-        public abstract string Description { get; }
-        public abstract UniTask Execute();
+        string Description { get; }
+        UniTask Execute();
     }
 
     [System.Serializable]
@@ -17,13 +16,15 @@ namespace Moths.Dialogues
     {
         [SerializeField] string _guid;
         [SerializeField] string _outputGuid;
+        [SerializeField] string _tag;
 
-        [SerializeField] InterfaceReference<DialogueActionBase> _action;
+        [SerializeField] InterfaceReference<IDialogueAction> _action;
 
         public string Description => _action ? _action.Value.Description : "No Action";
         public string Guid => _guid;
         public string OutputGuid => _outputGuid;
-        public DialogueActionBase Action => _action;
+        public string Tag => _tag;
+        public IDialogueAction Action => _action.Value;
 
         public DialogueAction()
         {

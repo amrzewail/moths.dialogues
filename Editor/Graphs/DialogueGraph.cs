@@ -28,17 +28,23 @@ namespace Moths.Dialogues.Editor.Graphs
 
             Button newSequenceBtn = new Button(() => NewElementCallback<DialogueSequence>(_dialogue.AddSequence)) { text = "New Sequence" };
             Button newChoicesBtn = new Button(() => NewElementCallback<DialogueChoices>(_dialogue.AddChoices)) { text = "New Choices" };
+            Button newConditionBtn = new Button(() => NewElementCallback<DialogueCondition>(_dialogue.AddCondition)) { text = "New Condition" };
             Button newActionBtn = new Button(() => NewElementCallback<DialogueAction>(_dialogue.AddAction)) { text = "New Action" };
+            Button newJumpBtn = new Button(() => NewElementCallback<DialogueJump>(_dialogue.AddJump)) { text = "New Jump" };
             Button newOutputBtn = new Button(() => NewElementCallback<DialogueOutput>(_dialogue.AddOutput)) { text = "New Output" };
 
             newSequenceBtn.AddToClassList("sidebar-element-btn");
             newChoicesBtn.AddToClassList("sidebar-element-btn");
+            newConditionBtn.AddToClassList("sidebar-element-btn");
             newActionBtn.AddToClassList("sidebar-element-btn");
+            newJumpBtn.AddToClassList("sidebar-element-btn");
             newOutputBtn.AddToClassList("sidebar-element-btn");
 
             editCategory.Content.Add(newSequenceBtn);
             editCategory.Content.Add(newChoicesBtn);
+            editCategory.Content.Add(newConditionBtn);
             editCategory.Content.Add(newActionBtn);
+            editCategory.Content.Add(newJumpBtn);
             editCategory.Content.Add(newOutputBtn);
 
             _graphView.EdgeCreated += EdgeCreatedCallback;
@@ -58,7 +64,9 @@ namespace Moths.Dialogues.Editor.Graphs
 
             if (node is DialogueSequenceNode sequenceNode) _dialogue.RemoveSequence(sequenceNode.GUID);
             else if (node is DialogueChoicesNode choicesNode) _dialogue.RemoveChoices(choicesNode.GUID);
+            else if (node is DialogueConditionNode conditionNode) _dialogue.RemoveCondition(conditionNode.GUID);
             else if (node is DialogueActionNode actionNode) _dialogue.RemoveAction(actionNode.GUID);
+            else if (node is DialogueJumpNode jumpNode) _dialogue.RemoveJump(jumpNode.GUID);
             else if (node is DialogueOutputNode outputNode) _dialogue.RemoveOutput(outputNode.GUID);
 
             if (_dialogue.StartingGuid == (node as BasicNode).GUID) _dialogue.StartingGuid = string.Empty;
@@ -143,6 +151,20 @@ namespace Moths.Dialogues.Editor.Graphs
                 var nodeMetadata = _editor.Graph.FindNodeByGuid(action.Guid, out var isNew);
                 if (isNew) nodeMetadata.position = _graphView.GetViewportCenter();
                 _graphView.AddNode(new DialogueActionNode(_dialogue, nodeMetadata, action));
+            }
+
+            foreach (var condition in _dialogue.Conditions)
+            {
+                var nodeMetadata = _editor.Graph.FindNodeByGuid(condition.Guid, out var isNew);
+                if (isNew) nodeMetadata.position = _graphView.GetViewportCenter();
+                _graphView.AddNode(new DialogueConditionNode(_dialogue, nodeMetadata, condition));
+            }
+
+            foreach (var jump in _dialogue.Jumps)
+            {
+                var nodeMetadata = _editor.Graph.FindNodeByGuid(jump.Guid, out var isNew);
+                if (isNew) nodeMetadata.position = _graphView.GetViewportCenter();
+                _graphView.AddNode(new DialogueJumpNode(_dialogue, nodeMetadata, jump));
             }
 
             foreach (var output in _dialogue.Outputs)

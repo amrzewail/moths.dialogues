@@ -20,8 +20,14 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
             _output = output;
 
             GUID = output.Guid;
-            title = _output.Name;
+            UpdateTitle();
             position = node.position;
+        }
+
+        private void UpdateTitle()
+        {
+            string baseTitle = string.IsNullOrEmpty(_output.Name) ? "Output" : _output.Name;
+            title = string.IsNullOrEmpty(_output.Tag) ? baseTitle : $"{baseTitle} ({_output.Tag})";
         }
 
         public string InspectorTitle => "Output";
@@ -56,13 +62,18 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
 
             if (outputProp != null)
             {
+                var tagField = new PropertyField(outputProp.FindPropertyRelative("_tag"), "Tag");
+                tagField.Bind(serializedObject);
+                tagField.RegisterValueChangeCallback(evt => UpdateTitle());
+                inspector.Add(tagField);
+
                 var nameField = new PropertyField(outputProp.FindPropertyRelative("_name"));
                 nameField.Bind(serializedObject);
                 inspector.Add(nameField);
 
                 nameField.RegisterValueChangeCallback(change =>
                 {
-                    title = _output.Name;
+                    UpdateTitle();
                 });
             }
 

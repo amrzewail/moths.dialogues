@@ -22,8 +22,13 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
             _sequence = sequence;
 
             GUID = sequence.Guid;
-            title = "Sequence";
+            UpdateTitle();
             position = node.position;
+        }
+
+        private void UpdateTitle()
+        {
+            title = string.IsNullOrEmpty(_sequence.Tag) ? "Sequence" : $"Sequence ({_sequence.Tag})";
         }
 
         public string InspectorTitle => "Sequence";
@@ -67,14 +72,24 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
             
             // We need to find the specific sequence in the list
             var sequencesProp = serializedObject.FindProperty("_sequences");
+            SerializedProperty sequenceProp = null;
             SerializedProperty linesProp = null;
             for (int i = 0; i < sequencesProp.arraySize; i++)
             {
                 if (sequencesProp.GetArrayElementAtIndex(i).FindPropertyRelative("_guid").stringValue == _sequence.Guid)
                 {
-                    linesProp = sequencesProp.GetArrayElementAtIndex(i).FindPropertyRelative("_lines");
+                    sequenceProp = sequencesProp.GetArrayElementAtIndex(i);
+                    linesProp = sequenceProp.FindPropertyRelative("_lines");
                     break;
                 }
+            }
+
+            if (sequenceProp != null)
+            {
+                var tagField = new PropertyField(sequenceProp.FindPropertyRelative("_tag"), "Tag");
+                tagField.Bind(serializedObject);
+                tagField.RegisterValueChangeCallback(evt => UpdateTitle());
+                inspector.Add(tagField);
             }
 
             // Create a main container to hold the entire list and the Add button

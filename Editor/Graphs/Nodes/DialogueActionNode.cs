@@ -27,8 +27,10 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
 
         private void UpdateTexts()
         {
-            title = "No Action";
-            if (_action.Action != null) title = _action.Action.GetType().Name;
+            string baseTitle = "No Action";
+            if (_action.Action != null) baseTitle = _action.Action.GetType().Name;
+
+            title = string.IsNullOrEmpty(_action.Tag) ? baseTitle : $"{baseTitle} ({_action.Tag})";
 
             extensionContainer.Clear();
             extensionContainer.Add(new Label(_action.Description));
@@ -70,6 +72,11 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
 
             if (actionProp != null)
             {
+                var tagField = new PropertyField(actionProp.FindPropertyRelative("_tag"), "Tag");
+                tagField.Bind(serializedObject);
+                tagField.RegisterValueChangeCallback(evt => UpdateTexts());
+                inspector.Add(tagField);
+
                 var actionInstanceProp = actionProp.FindPropertyRelative("_action");
 
                 var actionField = new PropertyField(actionInstanceProp, "▼");

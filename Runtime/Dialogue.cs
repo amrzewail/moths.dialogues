@@ -14,6 +14,8 @@ namespace Moths.Dialogues
         [SerializeField] List<DialogueChoices> _choices = new();
         [SerializeField] List<DialogueAction> _actions = new();
         [SerializeField] List<DialogueOutput> _outputs = new();
+        [SerializeField] List<DialogueCondition> _conditions = new();
+        [SerializeField] List<DialogueJump> _jumps = new();
 
         [SerializeField] SerializableDictionary<string, string> _connections = new();
 
@@ -23,6 +25,8 @@ namespace Moths.Dialogues
         public IReadOnlyList<DialogueChoices> Choices => _choices;
         public IReadOnlyList<DialogueAction> Actions => _actions;
         public IReadOnlyList<DialogueOutput> Outputs => _outputs;
+        public IReadOnlyList<DialogueCondition> Conditions => _conditions;
+        public IReadOnlyList<DialogueJump> Jumps => _jumps;
         public SerializableDictionary<string, string> Connections => _connections;
 
         public DialogueElement Start()
@@ -41,7 +45,7 @@ namespace Moths.Dialogues
             {
                 return GetElementByGuid(nextGuid);
             }
-            return default;
+            return GetElementByGuid(guid);
         }
 
         public DialogueElement GetElementByGuid(string guid)
@@ -61,6 +65,14 @@ namespace Moths.Dialogues
             for (int i = 0; i < _outputs.Count; i++)
             {
                 if (_outputs[i].Guid == guid) return _outputs[i];
+            }
+            for (int i = 0; i < _conditions.Count; i++)
+            {
+                if (_conditions[i].Guid == guid) return _conditions[i];
+            }
+            for (int i = 0; i < _jumps.Count; i++)
+            {
+                if (_jumps[i].Guid == guid) return _jumps[i];
             }
             return default;
         }
@@ -85,6 +97,12 @@ namespace Moths.Dialogues
 
         public void AddOutput(DialogueOutput output) => _outputs.Add(output);
         public void RemoveOutput(string guid) => _outputs.RemoveAll(o => o.Guid == guid);
+
+        public void AddCondition(DialogueCondition condition) => _conditions.Add(condition);
+        public void RemoveCondition(string guid) => _conditions.RemoveAll(c => c.Guid == guid);
+
+        public void AddJump(DialogueJump jump) => _jumps.Add(jump);
+        public void RemoveJump(string guid) => _jumps.RemoveAll(j => j.Guid == guid);
 
         public void AddSpeaker(DialogueSpeaker speaker) => _speakers.Add(speaker);
         public void RemoveSpeaker(string guid) => _speakers.RemoveAll(s => s.Guid == guid);

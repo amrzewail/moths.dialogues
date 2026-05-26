@@ -3,12 +3,13 @@ using UnityEngine;
 
 namespace Moths.Dialogues.Actions
 {
-    public class LogAction : DialogueActionBase
+    [System.Serializable]
+    public class LogAction : IDialogueAction
     {
-        public override string Description => $"Log \"{_text}\"";
+        public string Description => $"Log \"{_text}\"";
 
         [SerializeField] string _text;
-        public override async UniTask Execute()
+        public async UniTask Execute()
         {
             Debug.Log(_text);
         }
