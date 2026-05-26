@@ -1,0 +1,20 @@
+{
+	"name": "com.moths.dialogues",
+	"displayName": "Moths Dialogues",
+	"version": "1.0.0",
+	"unity": "2022.3",
+	"description": "A dialogue creation package utilizing a graph editor and custom actions.",
+	"author": {
+		"name": "Amr Zewail",
+		"email": "amrzewail@hotmail.com",
+		"url": "https://github.com/amrzewail"
+	},
+	"dependencies": {
+	},
+	"changelog": {
+		"1.0.0": "- Initial release"
+	},
+	"samples": [
+	],
+	"license": "MIT"
+}

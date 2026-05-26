@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Moths.Collections;
 
 namespace Moths.Dialogues
 {
@@ -8,7 +9,7 @@ namespace Moths.Dialogues
     public struct DialogueChoice
     {
         [SerializeField] string _guid;
-        [SerializeField] String _line;
+        [SerializeField] LString _line;
 
         public DialogueChoice(string guid)
         {
@@ -17,7 +18,7 @@ namespace Moths.Dialogues
         }
 
         public string Guid => _guid;
-        public String Line => _line;
+        public LString Line => _line;
     }
 
     [System.Serializable]

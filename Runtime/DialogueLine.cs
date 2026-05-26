@@ -1,4 +1,5 @@
 using UnityEngine;
+using Moths.Collections;
 
 namespace Moths.Dialogues
 {
@@ -8,7 +9,7 @@ namespace Moths.Dialogues
         [SerializeField, HideInInspector] Dialogue _dialogue;
 
         [SerializeField] string _speakerGuid;
-        [SerializeField] String _line;
+        [SerializeField] LString _line;
 
         public DialogueLine(Dialogue dialogueReference)
         {
@@ -16,7 +17,7 @@ namespace Moths.Dialogues
             _dialogue = dialogueReference;
         }
 
-        public String Line => _line;
-        public String Speaker => _dialogue == null ? new String(string.Empty) : _dialogue.GetSpeakerByGuid(_speakerGuid);
+        public LString Line => _line;
+        public LString Speaker => _dialogue == null ? new LString(string.Empty) : _dialogue.GetSpeakerByGuid(_speakerGuid);
     }
 }

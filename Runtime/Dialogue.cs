@@ -65,7 +65,7 @@ namespace Moths.Dialogues
             return default;
         }
 
-        public String GetSpeakerByGuid(string guid)
+        public LString GetSpeakerByGuid(string guid)
         {
             for (int i = 0; i < _speakers.Count; i++)
             {

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Moths.Collections;
 
 namespace Moths.Dialogues
 {
@@ -6,7 +7,7 @@ namespace Moths.Dialogues
     public struct DialogueSpeaker
     {
         [SerializeField] string _guid;
-        [SerializeField] String _name;
+        [SerializeField] LString _name;
 
         public DialogueSpeaker(string guid)
         {
@@ -15,6 +16,6 @@ namespace Moths.Dialogues
         }
 
         public string Guid => _guid;
-        public String Name => _name;
+        public LString Name => _name;
     }
 }

@@ -22,7 +22,7 @@ MonoBehaviour:
   - guid: e5081684-b019-4a31-b2e1-28b2ddc07398
     position: {x: 506, y: 132}
   - guid: af541f26-8842-4959-9c68-44482c6896ed
-    position: {x: 165.00002, y: -0.9999903}
+    position: {x: 171, y: 0}
   - guid: 6e317197-eb45-4750-b4e4-f43e6bc672e3
     position: {x: 825.173, y: -0.0000019073486}
   - guid: 1fbc71a4-4a7f-4481-a07f-564669798f04
@@ -34,7 +34,39 @@ MonoBehaviour:
   - guid: 9040e8a9-0c9e-41ae-a215-eeac9d5ff37d
     position: {x: 415, y: 110}
   - guid: aee5f837-b6a5-46d2-8da3-d8843c3475be
-    position: {x: 414, y: -1}
+    position: {x: 423, y: 0}
+  - guid: 5eda193c-580e-4d23-8d1f-99d212d17bf1
+    position: {x: 354, y: 178}
+  - guid: 66f097da-d20c-4ccc-bda1-38c171656289
+    position: {x: 375, y: 214}
+  - guid: 77423962-8560-4c7d-af69-16a3c7d347cc
+    position: {x: 176.00002, y: 187.17014}
+  - guid: d8abe738-af9f-466e-a5f8-4e779ebb544a
+    position: {x: 188, y: 257}
+  - guid: 3e9f207f-7b6e-4749-8350-c0c586e66ddc
+    position: {x: 392, y: 232}
+  - guid: 06455eca-7dad-498e-bb47-709f8ed8c468
+    position: {x: 413, y: 228}
+  - guid: 6c474862-91e5-4e4c-a49a-21a6f142d9bc
+    position: {x: 267, y: 221}
+  - guid: 8b5523e3-6e98-4b51-b988-df6e720deb63
+    position: {x: 157, y: 178}
+  - guid: f60f0b9c-1850-46ef-b113-838a78b0e47b
+    position: {x: 32, y: 145}
+  - guid: ca6fe68f-c658-421c-a089-18acda0e9324
+    position: {x: 368.5, y: 193}
+  - guid: 1a88c60e-8bac-4aa4-987f-7ae3be2af6b4
+    position: {x: 375, y: 178}
+  - guid: 1062526c-db17-4997-b713-d29d45f0321f
+    position: {x: 520, y: 178}
+  - guid: 12f60f91-6ed3-43d5-90a1-8543569186a0
+    position: {x: 176, y: 193}
+  - guid: 3b048b36-5aa7-4b64-9e73-2cbd9bed540a
+    position: {x: 239, y: 222}
+  - guid: 37d6201f-522d-414b-9f99-facd1ae0c08d
+    position: {x: 335, y: 226}
+  - guid: 71a5742c-634a-426c-9f97-ef421ab16b38
+    position: {x: 266, y: 219}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +157,7 @@ MonoBehaviour:
       _speakerGuid: 1ae90377-40be-4989-bc34-1b20a8148d2b
       _line:
         _useLocalization: 0
-        _text: You are trash.
+        _text: 'asda dasd asd asd '
         _localization:
           m_TableReference:
             m_TableCollectionName: 
@@ -201,18 +233,18 @@ MonoBehaviour:
         - _object:
             rid: 7437749246525964367
         - _object:
-            rid: 7437749246525964368
+            rid: 7437749246525964373
         - _object:
             rid: 7437749246525964371
     - rid: 7437749246525964367
       type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
       data:
         _text: Start Waiting
-    - rid: 7437749246525964368
-      type: {class: WaitAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
-      data:
-        _time: 5
     - rid: 7437749246525964371
       type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
       data:
         _text: End Waiting
+    - rid: 7437749246525964373
+      type: {class: WaitAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
+      data:
+        _time: 5
