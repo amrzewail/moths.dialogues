@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Moths.Dialogues.Conditions
 {
     [System.Serializable]
+    [InterfaceReference("Core/All Conditions")]
     public class AllConditions : IDialogueCondition
     {
         public string Description

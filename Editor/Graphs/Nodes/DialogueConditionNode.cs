@@ -1,4 +1,7 @@
 using Moths.Graphs.Editor;
+using Moths.Serialization;
+using System.Linq;
+using System.Reflection;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
@@ -32,10 +35,15 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
 
         private void UpdateTexts()
         {
-            string baseTitle = "No Condition";
-            if (_condition.Condition != null) baseTitle = _condition.Condition.GetType().Name;
+            string name = "No Condition";
+            if (_condition.Condition != null)
+            {
+                name = _condition.Condition.GetType().Name;
+                var attr = _condition.Condition.GetType().GetCustomAttribute<InterfaceReferenceAttribute>();
+                if (attr != null && attr.path != null && attr.path.Length > 0) name = attr.path.Split('/').Last();
+            }
 
-            title = string.IsNullOrEmpty(_condition.Tag) ? baseTitle : $"{baseTitle} ({_condition.Tag})";
+            title = string.IsNullOrEmpty(_condition.Tag) ? name : $"{name} ({_condition.Tag})";
 
             extensionContainer.Clear();
             extensionContainer.Add(new Label(_condition.Description));

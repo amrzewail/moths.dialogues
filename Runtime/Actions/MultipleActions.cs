@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Moths.Dialogues.Actions
 {
     [System.Serializable]
+    [InterfaceReference("Core/Multiple Actions")]
     public class MultipleActions : IDialogueAction
     {
         [SerializeField] InterfaceReference<IDialogueAction>[] _actions;
