@@ -77,7 +77,6 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
 
             if (tags.Count == 0) tags.Add("");
 
-
             string targetGuid = _jump.OutputGuid;
             var targetTag = "";
             if (guidMap.TryGetValue(targetGuid, out var tag)) targetTag = tag;
@@ -85,7 +84,7 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
             if (string.IsNullOrEmpty(targetGuid) && tags.Count > 0)
             {
                 targetTag = tags[0];
-                targetGuid = tagMap[targetTag];
+                if (tagMap.TryGetValue(targetTag, out var guid)) targetGuid = guid;
             }
 
             var dropdown = new PopupField<string>("Target Tag", tags, targetTag);

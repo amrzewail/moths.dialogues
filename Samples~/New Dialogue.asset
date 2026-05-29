@@ -16,7 +16,7 @@ MonoBehaviour:
   - guid: 5d8fa388-c7d2-4f8a-9cb8-e99f99a3f80e
     position: {x: 232, y: -108}
   - guid: 2b0c4b73-0723-4950-addc-e0160d94ffec
-    position: {x: 1106, y: -0.00000333786}
+    position: {x: 1183.2076, y: -11.500027}
   - guid: 0e47f673-4284-40a4-b7f8-b3be1a9030b7
     position: {x: 549.5, y: 19.700014}
   - guid: e5081684-b019-4a31-b2e1-28b2ddc07398
@@ -24,9 +24,9 @@ MonoBehaviour:
   - guid: af541f26-8842-4959-9c68-44482c6896ed
     position: {x: 172.52087, y: 0.000015258789}
   - guid: 6e317197-eb45-4750-b4e4-f43e6bc672e3
-    position: {x: 1306.5, y: -0.0000076293945}
+    position: {x: 1384.2078, y: -11.500027}
   - guid: 1fbc71a4-4a7f-4481-a07f-564669798f04
-    position: {x: 1339.0001, y: 119.000015}
+    position: {x: 1416.2076, y: 107.49999}
   - guid: 66b7b094-6a52-4d8f-8bee-1c5cd3c1fb96
     position: {x: 282, y: 163}
   - guid: b108be5e-60f0-48f1-a897-d1241396f3da
@@ -68,7 +68,7 @@ MonoBehaviour:
   - guid: 71a5742c-634a-426c-9f97-ef421ab16b38
     position: {x: 266, y: 219}
   - guid: cd05336a-765b-4c8f-ad9b-8545993c35f9
-    position: {x: 453.5865, y: 18}
+    position: {x: 454, y: 17}
   - guid: da2cbf0d-01a5-4a54-a65d-c2c6b67be39e
     position: {x: 761.5, y: 151.5}
   - guid: b6f98da3-9bf5-4eb7-9c3f-b7a3372651e7
@@ -170,7 +170,7 @@ MonoBehaviour:
   - guid: f6b63cc5-71f6-48ca-88e7-43d8bfa364b1
     position: {x: 657.4001, y: 444.40002}
   - guid: 806efe15-edf4-4ba7-9645-5da57d601d17
-    position: {x: 1019.6461, y: 171.00003}
+    position: {x: 1131.5503, y: 0}
   - guid: 83cda651-39be-4499-b245-8bbbcd2afeef
     position: {x: 970, y: 424}
   - guid: 603f5a27-02dc-47cf-9d6b-6a90a4b67b32
@@ -195,6 +195,10 @@ MonoBehaviour:
     position: {x: 1389.5259, y: 653.845}
   - guid: 6c4880a2-fe46-49a9-9717-3ee631510771
     position: {x: 1421.5259, y: 772.845}
+  - guid: f7fde25b-f736-4116-be0a-12761e5b003d
+    position: {x: 237, y: 208}
+  - guid: 294371b3-7eb8-499c-ac85-9a198d8b352c
+    position: {x: 357, y: 196}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,12 +337,12 @@ MonoBehaviour:
     _action:
       _object:
         rid: 7437749246525964366
-  - _guid: 806efe15-edf4-4ba7-9645-5da57d601d17
-    _outputGuid: 4d40cc8d-51c7-48a9-84ec-93cdd86ec456
-    _tag: ChoiceHub2
+  - _guid: 294371b3-7eb8-499c-ac85-9a198d8b352c
+    _outputGuid: 26b6677a-c86f-401f-b211-70184ffd9d2e
+    _tag: 
     _action:
       _object:
-        rid: 7437749263333851331
+        rid: 7437749263333851363
   _outputs:
   - _guid: 6e317197-eb45-4750-b4e4-f43e6bc672e3
     _name: Acceptance
@@ -380,8 +384,6 @@ MonoBehaviour:
     - key: 433e1041-513e-4cb0-a849-c3cbbb6336cf
       value: f24a6ac3-dfbf-412a-a24a-ab4568eb5d5d
     - key: aa054de3-7602-4b6d-bc46-8933c11da5e2
-      value: 806efe15-edf4-4ba7-9645-5da57d601d17
-    - key: 4d40cc8d-51c7-48a9-84ec-93cdd86ec456
       value: 2b0c4b73-0723-4950-addc-e0160d94ffec
   references:
     version: 2
@@ -393,21 +395,15 @@ MonoBehaviour:
         - _object:
             rid: 7437749246525964367
         - _object:
-            rid: 7437749246525964373
-        - _object:
             rid: 7437749246525964371
     - rid: 7437749246525964367
       type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
       data:
-        _text: Start Waiting
+        _text: adsadasd
     - rid: 7437749246525964371
       type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
       data:
-        _text: End Waiting
-    - rid: 7437749246525964373
-      type: {class: WaitAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
-      data:
-        _time: 5
+        _text: End Waitingsdsdsds
     - rid: 7437749246525964377
       type: {class: AllConditions, ns: Moths.Dialogues.Conditions, asm: Moths.Dialogues}
       data:
@@ -418,25 +414,7 @@ MonoBehaviour:
       type: {class: AllConditions, ns: Moths.Dialogues.Conditions, asm: Moths.Dialogues}
       data:
         _conditions: []
-    - rid: 7437749263333851331
-      type: {class: MultipleActions, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
-      data:
-        _actions:
-        - _object:
-            rid: 7437749263333851332
-        - _object:
-            rid: 7437749263333851333
-        - _object:
-            rid: 7437749263333851334
-    - rid: 7437749263333851332
+    - rid: 7437749263333851363
       type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
       data:
-        _text: Start Waiting
-    - rid: 7437749263333851333
-      type: {class: WaitAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
-      data:
-        _time: 7.21
-    - rid: 7437749263333851334
-      type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
-      data:
-        _text: End Waiting
+        _text: 
