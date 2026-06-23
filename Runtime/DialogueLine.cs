@@ -1,5 +1,6 @@
 using UnityEngine;
 using Moths.Collections;
+using Moths.Serialization;
 
 namespace Moths.Dialogues
 {
@@ -10,6 +11,7 @@ namespace Moths.Dialogues
 
         [SerializeField] string _speakerGuid;
         [SerializeField] LString _line;
+        [SerializeField] InterfaceReference<IDialogueLineData> _data;
 
         public DialogueLine(Dialogue dialogueReference)
         {
@@ -17,7 +19,32 @@ namespace Moths.Dialogues
             _dialogue = dialogueReference;
         }
 
+        public bool TryGetData<T>(out T data) where T : IDialogueLineData
+        {
+            data = default;
+            if (_data.Value != null)
+            {
+                data = (T)_data.Value;
+                return true;
+            }
+            return false;
+        }
+
+        public bool TryGetSpeakerData<T>(out T data) where T : IDialogueSpeakerData
+        {
+            data = default;
+            var speaker = _dialogue.GetSpeakerByGuid(_speakerGuid);
+            if (speaker.Data != null)
+            {
+                data = (T)speaker.Data;
+                return true;
+            }
+            return false;
+        }
+
         public LString Line => _line;
-        public LString Speaker => _dialogue == null ? new LString(string.Empty) : _dialogue.GetSpeakerByGuid(_speakerGuid);
+        public LString Speaker => _dialogue == null ? new LString(string.Empty) : _dialogue.GetSpeakerByGuid(_speakerGuid).Name;
     }
+
+    public interface IDialogueLineData { }
 }

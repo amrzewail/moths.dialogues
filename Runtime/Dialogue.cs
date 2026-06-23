@@ -77,11 +77,11 @@ namespace Moths.Dialogues
             return default;
         }
 
-        public LString GetSpeakerByGuid(string guid)
+        public DialogueSpeaker GetSpeakerByGuid(string guid)
         {
             for (int i = 0; i < _speakers.Count; i++)
             {
-                if (_speakers[i].Guid == guid) return _speakers[i].Name;
+                if (_speakers[i].Guid == guid) return _speakers[i];
             }
             return default;
         }

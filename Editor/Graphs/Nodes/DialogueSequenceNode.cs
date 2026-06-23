@@ -134,7 +134,7 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
                     verticalContainer.style.marginBottom = 4;
                     verticalContainer.style.paddingBottom = 4;
                     verticalContainer.style.borderBottomWidth = 1;
-                    verticalContainer.style.borderBottomColor = new StyleColor(new Color(0.2f, 0.2f, 0.2f, 0.5f)); // Subtle separator
+                    verticalContainer.style.borderBottomColor = new StyleColor(new Color(0.3f, 0.3f, 0.3f, 1f)); // Subtle separator
 
                     // --- 1. Row Container ---
                     var lineElement = new VisualElement();
@@ -172,6 +172,9 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
                         UpdateLinesContainer();
                     });
 
+                    var data = new PropertyField(lineProp.FindPropertyRelative("_data"));
+                    data.style.flexGrow = 1;
+                    data.Bind(serializedObject);
 
                     // --- 3. Buttons Container ---
                     var buttonGroup = new VisualElement();
@@ -234,6 +237,7 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
 
                     verticalContainer.Add(lineElement);
                     verticalContainer.Add(line);
+                    verticalContainer.Add(data);
 
                     linesContainer.Add(verticalContainer);
                 }

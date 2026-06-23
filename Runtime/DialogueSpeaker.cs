@@ -1,5 +1,6 @@
 using UnityEngine;
 using Moths.Collections;
+using Moths.Serialization;
 
 namespace Moths.Dialogues
 {
@@ -8,6 +9,7 @@ namespace Moths.Dialogues
     {
         [SerializeField] string _guid;
         [SerializeField] LString _name;
+        [SerializeField] InterfaceReference<IDialogueSpeakerData> _data;
 
         public DialogueSpeaker(string guid)
         {
@@ -17,5 +19,8 @@ namespace Moths.Dialogues
 
         public string Guid => _guid;
         public LString Name => _name;
+        public IDialogueSpeakerData Data => _data.Value;
     }
+
+    public interface IDialogueSpeakerData { }
 }

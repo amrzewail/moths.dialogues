@@ -44,20 +44,26 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
                     int currentIndex = i; // Crucial: Capture the index into a local variable for the button lambdas
                     var speakerProp = listProp.GetArrayElementAtIndex(currentIndex);
 
+                    var speakerContainer = new VisualElement();
+                    speakerContainer.style.marginBottom = 4;
+                    speakerContainer.style.paddingBottom = 4;
+                    speakerContainer.style.borderBottomWidth = 1;
+                    speakerContainer.style.borderBottomColor = new StyleColor(new Color(0.3f, 0.3f, 0.3f, 1f)); // Subtle separator
+
                     // --- 1. Row Container ---
-                    var speakerElement = new VisualElement();
-                    speakerElement.style.flexDirection = FlexDirection.Row; // Align items horizontally
-                    speakerElement.style.alignItems = Align.Center; // Vertically center items in the row
-                    speakerElement.style.marginBottom = 4;
-                    speakerElement.style.paddingBottom = 4;
-                    speakerElement.style.borderBottomWidth = 1;
-                    speakerElement.style.borderBottomColor = new StyleColor(new Color(0.2f, 0.2f, 0.2f, 0.5f)); // Subtle separator
+                    var rowContainer = new VisualElement();
+                    rowContainer.style.flexDirection = FlexDirection.Row; // Align items horizontally
+                    rowContainer.style.alignItems = Align.Center; // Vertically center items in the row
 
                     // --- 2. The Property Field ---
                     // Pass string.Empty to hide the default label and save space
                     var name = new PropertyField(speakerProp.FindPropertyRelative("_name"), string.Empty);
                     name.style.flexGrow = 1; // Make it expand to fill all empty horizontal space
                     name.Bind(serializedObject);
+
+                    var data = new PropertyField(speakerProp.FindPropertyRelative("_data"));
+                    data.style.flexGrow = 1;
+                    data.Bind(serializedObject);
 
                     // --- 3. Buttons Container ---
                     var buttonGroup = new VisualElement();
@@ -109,10 +115,13 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
                     buttonGroup.Add(deleteBtn);
 
                     // Assemble the row
-                    speakerElement.Add(name);
-                    speakerElement.Add(buttonGroup);
+                    rowContainer.Add(name);
+                    rowContainer.Add(buttonGroup);
 
-                    speakersContainer.Add(speakerElement);
+                    speakerContainer.Add(rowContainer);
+                    speakerContainer.Add(data);
+
+                    speakersContainer.Add(speakerContainer);
                 }
 
                 // --- 4. Add Choice Button ---
