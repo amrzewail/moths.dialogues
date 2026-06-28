@@ -8,7 +8,7 @@ namespace Moths.Dialogues.Actions
     [InterfaceReference("Core/Wait Action")]
     public class WaitAction : IDialogueAction
     {
-        public string Description => $"Wait for {_time} seconds";
+        public string Description => $"Wait for <b>{_time}</b> seconds";
 
         [SerializeField] float _time;
         public async UniTask Execute()

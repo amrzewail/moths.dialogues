@@ -22,7 +22,7 @@ namespace Moths.Dialogues
         public bool TryGetData<T>(out T data) where T : IDialogueLineData
         {
             data = default;
-            if (_data.Value != null)
+            if (_data)
             {
                 data = (T)_data.Value;
                 return true;

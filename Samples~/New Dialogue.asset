@@ -24,7 +24,7 @@ MonoBehaviour:
   - guid: af541f26-8842-4959-9c68-44482c6896ed
     position: {x: 213, y: 0}
   - guid: 6e317197-eb45-4750-b4e4-f43e6bc672e3
-    position: {x: 1384.2078, y: -11.500027}
+    position: {x: 449.5, y: 0}
   - guid: 1fbc71a4-4a7f-4481-a07f-564669798f04
     position: {x: 1416.2076, y: 107.49999}
   - guid: 66b7b094-6a52-4d8f-8bee-1c5cd3c1fb96
@@ -199,6 +199,12 @@ MonoBehaviour:
     position: {x: 237, y: 208}
   - guid: 294371b3-7eb8-499c-ac85-9a198d8b352c
     position: {x: 357, y: 196}
+  - guid: 05535c4e-9179-41c4-9f1e-50c0416a06ef
+    position: {x: 192, y: 0}
+  - guid: 2e7fa469-2ec9-4c7b-ae0d-11d9c0b94bc5
+    position: {x: 186.55952, y: 0.0000035762787}
+  - guid: 436c9e0f-f21b-4c59-af87-0d7ca084247c
+    position: {x: 187, y: 127}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bb35f22350c6f747b017852da398676, type: 3}
   m_Name: New Dialogue
   m_EditorClassIdentifier: Moths.Dialogues::Moths.Dialogues.Dialogue
-  _startingGuid: af541f26-8842-4959-9c68-44482c6896ed
+  _startingGuid: 
   _speakers:
   - _guid: 1ae90377-40be-4989-bc34-1b20a8148d2b
     _name:
@@ -245,144 +251,28 @@ MonoBehaviour:
     _data:
       _object:
         rid: -2
-  _sequences:
-  - _guid: af541f26-8842-4959-9c68-44482c6896ed
-    _outputGuid: ad97876b-334b-4b11-9b13-0e05ee9b379a
-    _tag: Seq1
-    _lines:
-    - _dialogue: {fileID: 11400000}
-      _speakerGuid: 66d95a92-7513-4ed4-9784-71fe3ad5575e
-      _line:
-        _useLocalization: 0
-        _text: Hello darkness my old friend.
-        _localization:
-          m_TableReference:
-            m_TableCollectionName: 
-          m_TableEntryReference:
-            m_KeyId: 0
-            m_Key: 
-          m_FallbackState: 0
-          m_WaitForCompletion: 0
-          m_LocalVariables: []
-      _data:
-        _object:
-          rid: -2
-    - _dialogue: {fileID: 11400000}
-      _speakerGuid: 1ae90377-40be-4989-bc34-1b20a8148d2b
-      _line:
-        _useLocalization: 0
-        _text: No, I can't believe that.
-        _localization:
-          m_TableReference:
-            m_TableCollectionName: 
-          m_TableEntryReference:
-            m_KeyId: 0
-            m_Key: 
-          m_FallbackState: 0
-          m_WaitForCompletion: 0
-          m_LocalVariables: []
-      _data:
-        _object:
-          rid: -2
-    - _dialogue: {fileID: 11400000}
-      _speakerGuid: 66d95a92-7513-4ed4-9784-71fe3ad5575e
-      _line:
-        _useLocalization: 0
-        _text: Accept it...
-        _localization:
-          m_TableReference:
-            m_TableCollectionName: 
-          m_TableEntryReference:
-            m_KeyId: 0
-            m_Key: 
-          m_FallbackState: 0
-          m_WaitForCompletion: 0
-          m_LocalVariables: []
-      _data:
-        _object:
-          rid: -2
-    - _dialogue: {fileID: 11400000}
-      _speakerGuid: 1ae90377-40be-4989-bc34-1b20a8148d2b
-      _line:
-        _useLocalization: 0
-        _text: 'asda dasd asd asd '
-        _localization:
-          m_TableReference:
-            m_TableCollectionName: 
-          m_TableEntryReference:
-            m_KeyId: 0
-            m_Key: 
-          m_FallbackState: 0
-          m_WaitForCompletion: 0
-          m_LocalVariables: []
-      _data:
-        _object:
-          rid: -2
-  _choices:
-  - _guid: 2b0c4b73-0723-4950-addc-e0160d94ffec
-    _tag: NewTag2
-    _choices:
-    - _guid: 58b3e8df-aed5-4239-ab5e-245b0102fe44
-      _line:
-        _useLocalization: 0
-        _text: Accept
-        _localization:
-          m_TableReference:
-            m_TableCollectionName: 
-          m_TableEntryReference:
-            m_KeyId: 0
-            m_Key: 
-          m_FallbackState: 0
-          m_WaitForCompletion: 0
-          m_LocalVariables: []
-    - _guid: 52fcc509-303b-47ae-8ed5-bea7d0f14033
-      _line:
-        _useLocalization: 0
-        _text: Refuse
-        _localization:
-          m_TableReference:
-            m_TableCollectionName: 
-          m_TableEntryReference:
-            m_KeyId: 0
-            m_Key: 
-          m_FallbackState: 0
-          m_WaitForCompletion: 0
-          m_LocalVariables: []
+  _sequences: []
+  _choices: []
   _actions:
-  - _guid: aee5f837-b6a5-46d2-8da3-d8843c3475be
-    _outputGuid: aa054de3-7602-4b6d-bc46-8933c11da5e2
-    _tag: ChoiceHub2
-    _action:
-      _object:
-        rid: 7437749246525964366
-  - _guid: 294371b3-7eb8-499c-ac85-9a198d8b352c
-    _outputGuid: 26b6677a-c86f-401f-b211-70184ffd9d2e
+  - _guid: 436c9e0f-f21b-4c59-af87-0d7ca084247c
+    _outputGuid: dd7679ce-c7a4-498c-b7e5-6828e65b9f34
     _tag: 
     _action:
       _object:
-        rid: 7437749263333851363
+        rid: 6019517848463343618
   _outputs:
   - _guid: 6e317197-eb45-4750-b4e4-f43e6bc672e3
-    _name: Acceptance
+    _name: Complete
     _tag: 
-  - _guid: 1fbc71a4-4a7f-4481-a07f-564669798f04
-    _name: Refusal
-    _tag: Out/Refuse
   _conditions:
-  - _guid: cd05336a-765b-4c8f-ad9b-8545993c35f9
-    _trueOutputGuid: 9c795c2c-873f-4137-b8e8-a7bddb2e0f28
-    _falseOutputGuid: 433e1041-513e-4cb0-a849-c3cbbb6336cf
+  - _guid: 2e7fa469-2ec9-4c7b-ae0d-11d9c0b94bc5
+    _trueOutputGuid: 56795593-3ff7-4e8f-96e5-19eaa4134bf6
+    _falseOutputGuid: dbe4ef89-8534-4364-825e-96420134946e
     _tag: 
     _condition:
       _object:
-        rid: 7437749246525964377
-  _jumps:
-  - _guid: b6f98da3-9bf5-4eb7-9c3f-b7a3372651e7
-    _outputGuid: aee5f837-b6a5-46d2-8da3-d8843c3475be
-    _targetTag: ChoiceHub2
-  - _guid: f24a6ac3-dfbf-412a-a24a-ab4568eb5d5d
-    _outputGuid: 1fbc71a4-4a7f-4481-a07f-564669798f04
-    _targetTag: Out/Refuse
+        rid: 6019517847292346437
+  _jumps: []
   _connections:
     _pairs:
     - key: b72ceaa9-e37b-4fed-b468-4a5eb3d9fb82
@@ -391,50 +281,35 @@ MonoBehaviour:
       value: e5081684-b019-4a31-b2e1-28b2ddc07398
     - key: 106777ac-10d8-472b-b5a8-42333a19db7e
       value: e5081684-b019-4a31-b2e1-28b2ddc07398
-    - key: 58b3e8df-aed5-4239-ab5e-245b0102fe44
-      value: 6e317197-eb45-4750-b4e4-f43e6bc672e3
-    - key: 52fcc509-303b-47ae-8ed5-bea7d0f14033
-      value: 1fbc71a4-4a7f-4481-a07f-564669798f04
-    - key: ad97876b-334b-4b11-9b13-0e05ee9b379a
-      value: cd05336a-765b-4c8f-ad9b-8545993c35f9
-    - key: 9c795c2c-873f-4137-b8e8-a7bddb2e0f28
-      value: b6f98da3-9bf5-4eb7-9c3f-b7a3372651e7
-    - key: 433e1041-513e-4cb0-a849-c3cbbb6336cf
-      value: f24a6ac3-dfbf-412a-a24a-ab4568eb5d5d
-    - key: aa054de3-7602-4b6d-bc46-8933c11da5e2
-      value: 2b0c4b73-0723-4950-addc-e0160d94ffec
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 7437749246525964366
-      type: {class: MultipleActions, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
-      data:
-        _actions:
-        - _object:
-            rid: 7437749246525964367
-        - _object:
-            rid: 7437749246525964371
-    - rid: 7437749246525964367
-      type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
-      data:
-        _text: adsadasd
-    - rid: 7437749246525964371
-      type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
-      data:
-        _text: End Waitingsdsdsds
-    - rid: 7437749246525964377
+    - rid: 6019517847292346437
       type: {class: AllConditions, ns: Moths.Dialogues.Conditions, asm: Moths.Dialogues}
       data:
         _conditions:
         - _object:
-            rid: 7437749246525964378
-    - rid: 7437749246525964378
+            rid: 6019517848463343616
+    - rid: 6019517848463343616
       type: {class: AllConditions, ns: Moths.Dialogues.Conditions, asm: Moths.Dialogues}
       data:
         _conditions: []
-    - rid: 7437749263333851363
+    - rid: 6019517848463343618
+      type: {class: MultipleActions, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
+      data:
+        _actions:
+        - _object:
+            rid: 6019517848463343619
+        - _object:
+            rid: 6019517848463343620
+    - rid: 6019517848463343619
       type: {class: LogAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
       data:
         _text: 
+    - rid: 6019517848463343620
+      type: {class: WaitAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
+      data:
+        _time: 20
+        dlg: {fileID: 11400000}
