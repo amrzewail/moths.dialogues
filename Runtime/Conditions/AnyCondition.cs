@@ -15,6 +15,7 @@ namespace Moths.Dialogues.Conditions
                 List<string> descriptions = new();
                 foreach (var condition in _conditions)
                 {
+                    if (condition.Value == null) continue;
                     if (condition) descriptions.Add(condition.Value.Description);
                 }
                 return string.Join("\n\n", descriptions);
