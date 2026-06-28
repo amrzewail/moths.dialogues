@@ -17,6 +17,7 @@ namespace Moths.Dialogues.Actions
                 string name = string.Empty;
                 for (int i = 0; i < _actions.Length; i++)
                 {
+                    if (_actions[i].Value == null) continue;
                     name += _actions[i].Value.Description;
                     if (i < _actions.Length - 1) name += "\n\n";
                 }

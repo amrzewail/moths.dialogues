@@ -22,7 +22,7 @@ MonoBehaviour:
   - guid: e5081684-b019-4a31-b2e1-28b2ddc07398
     position: {x: 506, y: 132}
   - guid: af541f26-8842-4959-9c68-44482c6896ed
-    position: {x: 212, y: -1}
+    position: {x: 213, y: 0}
   - guid: 6e317197-eb45-4750-b4e4-f43e6bc672e3
     position: {x: 1384.2078, y: -11.500027}
   - guid: 1fbc71a4-4a7f-4481-a07f-564669798f04
@@ -226,9 +226,12 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    _data:
+      _object:
+        rid: -2
   - _guid: 66d95a92-7513-4ed4-9784-71fe3ad5575e
     _name:
-      _useLocalization: 1
+      _useLocalization: 0
       _text: Normal string
       _localization:
         m_TableReference:
@@ -239,6 +242,9 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    _data:
+      _object:
+        rid: -2
   _sequences:
   - _guid: af541f26-8842-4959-9c68-44482c6896ed
     _outputGuid: ad97876b-334b-4b11-9b13-0e05ee9b379a
@@ -258,6 +264,9 @@ MonoBehaviour:
           m_FallbackState: 0
           m_WaitForCompletion: 0
           m_LocalVariables: []
+      _data:
+        _object:
+          rid: -2
     - _dialogue: {fileID: 11400000}
       _speakerGuid: 1ae90377-40be-4989-bc34-1b20a8148d2b
       _line:
@@ -272,6 +281,9 @@ MonoBehaviour:
           m_FallbackState: 0
           m_WaitForCompletion: 0
           m_LocalVariables: []
+      _data:
+        _object:
+          rid: -2
     - _dialogue: {fileID: 11400000}
       _speakerGuid: 66d95a92-7513-4ed4-9784-71fe3ad5575e
       _line:
@@ -286,6 +298,9 @@ MonoBehaviour:
           m_FallbackState: 0
           m_WaitForCompletion: 0
           m_LocalVariables: []
+      _data:
+        _object:
+          rid: -2
     - _dialogue: {fileID: 11400000}
       _speakerGuid: 1ae90377-40be-4989-bc34-1b20a8148d2b
       _line:
@@ -300,6 +315,9 @@ MonoBehaviour:
           m_FallbackState: 0
           m_WaitForCompletion: 0
           m_LocalVariables: []
+      _data:
+        _object:
+          rid: -2
   _choices:
   - _guid: 2b0c4b73-0723-4950-addc-e0160d94ffec
     _tag: NewTag2
@@ -388,6 +406,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 7437749246525964366
       type: {class: MultipleActions, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
       data:
