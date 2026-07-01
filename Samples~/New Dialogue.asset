@@ -204,7 +204,7 @@ MonoBehaviour:
   - guid: 2e7fa469-2ec9-4c7b-ae0d-11d9c0b94bc5
     position: {x: 186.55952, y: 0.0000035762787}
   - guid: 436c9e0f-f21b-4c59-af87-0d7ca084247c
-    position: {x: 187, y: 127}
+    position: {x: 192.57178, y: 109.57176}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,4 +312,3 @@ MonoBehaviour:
       type: {class: WaitAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
       data:
         _time: 20
-        dlg: {fileID: 11400000}

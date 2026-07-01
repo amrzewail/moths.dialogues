@@ -560,7 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef0709e00f2e6994e97f1ec9e130f91e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Moths.Dialogues.Samples.DialogueSample
-  _dialogue: {fileID: 11400000, guid: 224506ec82d03bc49a992926548bc451, type: 2}
+  _dialogue: {fileID: 11400000, guid: ec0aa0b1400d7cc488705f7eb8baf7fc, type: 2}
 --- !u!1 &1409794597
 GameObject:
   m_ObjectHideFlags: 0
