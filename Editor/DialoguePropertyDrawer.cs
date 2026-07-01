@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
+using UnityEngine.WSA;
 
 namespace Moths.Dialogues.Editor
 {
@@ -56,9 +58,9 @@ namespace Moths.Dialogues.Editor
                         property.objectReferenceValue = selectedDialogue;
                         property.serializedObject.ApplyModifiedProperties();
                     },
-                    onCreateNew: () =>
+                    onCreateNew: path =>
                     {
-                        CreateAndAssignNewDialogue(property);
+                        CreateAndAssignNewDialogue(path, property);
                     }
                 );
                 dropdown.Show(dropdownRect);
@@ -66,7 +68,7 @@ namespace Moths.Dialogues.Editor
 
             // 2. Open Button (Only enabled when a Dialogue is assigned)
             EditorGUI.BeginDisabledGroup(currentDialogue == null || property.hasMultipleDifferentValues);
-            if (GUI.Button(openRect, new GUIContent("Open", "Open this Dialogue in the Dialogue Creator"), EditorStyles.miniButton))
+            if (GUI.Button(openRect, new GUIContent("Edit", "Edit this Dialogue in the Dialogue Creator"), EditorStyles.miniButton))
             {
                 AssetDatabase.OpenAsset(currentDialogue);
             }
@@ -80,11 +82,12 @@ namespace Moths.Dialogues.Editor
             return EditorGUIUtility.singleLineHeight;
         }
 
-        private void CreateAndAssignNewDialogue(SerializedProperty property)
+        private void CreateAndAssignNewDialogue(string folderPath, SerializedProperty property)
         {
             Dialogue dialogue = ScriptableObject.CreateInstance<Dialogue>();
             dialogue.name = "New Dialogue";
-            string path = EditorUtility.SaveFilePanelInProject("Create a dialogue", "New Dialogue", "asset", "");
+
+            string path = EditorUtility.SaveFilePanelInProject("Create a dialogue", "New Dialogue", "asset", "", folderPath);
             if (string.IsNullOrEmpty(path)) return;
 
             AssetDatabase.CreateAsset(dialogue, path);
@@ -99,9 +102,9 @@ namespace Moths.Dialogues.Editor
     public class DialogueDropdown : AdvancedDropdown
     {
         private readonly Action<Dialogue> _onSelected;
-        private readonly Action _onCreateNew;
+        private readonly Action<string> _onCreateNew;
 
-        public DialogueDropdown(AdvancedDropdownState state, Action<Dialogue> onSelected, Action onCreateNew) : base(state)
+        public DialogueDropdown(AdvancedDropdownState state, Action<Dialogue> onSelected, Action<string> onCreateNew) : base(state)
         {
             _onSelected = onSelected;
             _onCreateNew = onCreateNew;
@@ -113,10 +116,10 @@ namespace Moths.Dialogues.Editor
             var root = new AdvancedDropdownItem("Select Dialogue");
 
             // Add the None option at the top
-            root.AddChild(new DialogueDropdownItem(null, "None"));
+            root.AddChild(new DialogueDropdownItem(null, "None", null));
 
             // Add the Create New option
-            root.AddChild(new DialogueDropdownItem(null, "Create New Dialogue...", isCreateNew: true));
+            root.AddChild(new DialogueDropdownItem(null, "New Dialogue...", "Assets", isCreateNew: true));
 
             // Find all Dialogue assets in the project
             string[] guids = AssetDatabase.FindAssets("t:Dialogue");
@@ -131,13 +134,13 @@ namespace Moths.Dialogues.Editor
                 }
             }
 
-            // Sort dialogues by folder name, then dialogue name
+            // Sort dialogues by parent folder name, then dialogue name
             dialogues.Sort((a, b) =>
             {
                 string pathA = AssetDatabase.GetAssetPath(a);
                 string pathB = AssetDatabase.GetAssetPath(b);
-                string folderA = GetFolderPrefix(pathA);
-                string folderB = GetFolderPrefix(pathB);
+                string folderA = GetImmediateParentFolder(pathA);
+                string folderB = GetImmediateParentFolder(pathB);
 
                 int folderCompare = string.Compare(folderA, folderB, StringComparison.OrdinalIgnoreCase);
                 if (folderCompare != 0) return folderCompare;
@@ -145,13 +148,43 @@ namespace Moths.Dialogues.Editor
                 return string.Compare(a.name, b.name, StringComparison.OrdinalIgnoreCase);
             });
 
-            // Add to the dropdown
+            // Dictionary to store created parent folder items to avoid duplicate folder nodes
+            var folderCache = new Dictionary<string, AdvancedDropdownItem>();
+
+            // Add dialogues to the dropdown
             foreach (var dialogue in dialogues)
             {
                 string path = AssetDatabase.GetAssetPath(dialogue);
-                string folder = GetFolderPrefix(path);
-                string displayName = $"{folder}/{dialogue.name}";
-                root.AddChild(new DialogueDropdownItem(dialogue, displayName));
+                if (string.IsNullOrEmpty(path)) continue;
+
+                string parentFolder = GetImmediateParentFolder(path);
+
+                if (parentFolder == "Assets")
+                {
+                    // Add directly to root if it is in the root assets folder
+                    root.AddChild(new DialogueDropdownItem(dialogue, dialogue.name, "Assets"));
+                }
+                else
+                {
+                    // Add to its parent folder submenu
+                    if (!folderCache.TryGetValue(parentFolder, out var folderItem))
+                    {
+                        folderItem = new AdvancedDropdownItem(parentFolder);
+
+                        // Set folder icon
+                        Texture2D folderIcon = EditorGUIUtility.IconContent("Folder Icon").image as Texture2D;
+                        if (folderIcon != null)
+                        {
+                            folderItem.icon = folderIcon;
+                        }
+                        root.AddChild(folderItem);
+                        folderCache[parentFolder] = folderItem;
+
+                        folderItem.AddChild(new DialogueDropdownItem(null, "New Dialogue...", Path.GetDirectoryName(path), isCreateNew: true));
+                    }
+
+                    folderItem.AddChild(new DialogueDropdownItem(dialogue, dialogue.name, "Assets"));
+                }
             }
 
             return root;
@@ -163,7 +196,7 @@ namespace Moths.Dialogues.Editor
             {
                 if (dialogueItem.IsCreateNew)
                 {
-                    _onCreateNew?.Invoke();
+                    _onCreateNew?.Invoke(dialogueItem.Path);
                 }
                 else
                 {
@@ -172,11 +205,11 @@ namespace Moths.Dialogues.Editor
             }
         }
 
-        private string GetFolderPrefix(string assetPath)
+        private string GetImmediateParentFolder(string assetPath)
         {
-            if (string.IsNullOrEmpty(assetPath)) return "Unsaved";
+            if (string.IsNullOrEmpty(assetPath)) return "Assets";
             string dir = System.IO.Path.GetDirectoryName(assetPath);
-            if (string.IsNullOrEmpty(dir)) return "Root";
+            if (string.IsNullOrEmpty(dir)) return "Assets";
 
             dir = dir.Replace('\\', '/');
             string folderName = System.IO.Path.GetFileName(dir);
@@ -192,11 +225,13 @@ namespace Moths.Dialogues.Editor
     {
         public Dialogue Dialogue { get; }
         public bool IsCreateNew { get; }
+        public string Path { get; }
 
-        public DialogueDropdownItem(Dialogue dialogue, string name, bool isCreateNew = false) : base(name)
+        public DialogueDropdownItem(Dialogue dialogue, string name, string path, bool isCreateNew = false) : base(name)
         {
             Dialogue = dialogue;
             IsCreateNew = isCreateNew;
+            Path = path;
 
             if (isCreateNew)
             {
