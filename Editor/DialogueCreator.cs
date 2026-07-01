@@ -100,7 +100,7 @@ namespace Moths.Dialogues.Editor
         public static bool OpenDialogueAsset(int instanceID, int line)
         {
             UnityEngine.Object asset = EditorUtility.InstanceIDToObject(instanceID);
-            if (!(asset is Dialogue dialogueAsset)) return false;
+            if (asset is not Dialogue dialogueAsset) return false;
 
             string assetPath = AssetDatabase.GetAssetPath(dialogueAsset);
             UnityEngine.Object[] allAssets = AssetDatabase.LoadAllAssetsAtPath(assetPath);
@@ -126,7 +126,7 @@ namespace Moths.Dialogues.Editor
             DialogueCreator window = EditorWindow.CreateWindow<DialogueCreator>();
 
             Texture2D icon = Resources.Load<Texture2D>("Moths.Dialogues/icon_dialogue");
-            window.titleContent = new GUIContent("Dialogue Creator", icon);
+            window.titleContent = new GUIContent(dialogueAsset.name, icon);
             window._properties = graphProperties;
             window._dialogue = dialogueAsset;
 
