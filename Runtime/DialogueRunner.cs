@@ -112,6 +112,13 @@ namespace Moths.Dialogues
                     ProcessCurrentElement().Forget();
                     break;
 
+                case DialogueElement.ElementType.Random:
+                    var random = (DialogueRandom)_currentElement;
+                    string randomNextGuid = random.GetRandomOutputGuid();
+                    _currentElement = _currentDialogue.Next(randomNextGuid);
+                    ProcessCurrentElement().Forget();
+                    break;
+
                 case DialogueElement.ElementType.Output:
                     var output = (DialogueOutput)_currentElement;
                     OnOutput?.Invoke(output);
