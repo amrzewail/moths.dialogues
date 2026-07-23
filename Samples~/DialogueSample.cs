@@ -1,3 +1,4 @@
+using Moths.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ namespace Moths.Dialogues.Samples
         private DialogueRunner _runner = new();
 
         [SerializeField] Dialogue _dialogue;
+
+        [SerializeField] SerializableDictionary<string, float> _dictionary = new();
+        [SerializeField] SerializableDictionary<string, float> _dictionary2 = new();
 
         private void Start()
         {
@@ -23,6 +27,19 @@ namespace Moths.Dialogues.Samples
 
         private void Update()
         {
+            _dictionary["hello test"] = 20;
+
+            foreach(var pair in _dictionary)
+            {
+                Debug.Log($"{pair.Key}: {pair.Value}");
+            }
+
+
+            foreach (var pair in _dictionary2)
+            {
+                pair.value += Time.deltaTime;
+            }
+
             if (Input.GetKeyDown(KeyCode.E))
             {
                 _runner.Next();

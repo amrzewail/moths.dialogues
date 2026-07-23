@@ -119,6 +119,13 @@ namespace Moths.Dialogues
                     ProcessCurrentElement().Forget();
                     break;
 
+                case DialogueElement.ElementType.Switch:
+                    var dialogueSwitch = (DialogueSwitch)_currentElement;
+                    string switchNextGuid = dialogueSwitch.Evaluate();
+                    _currentElement = _currentDialogue.Next(switchNextGuid);
+                    ProcessCurrentElement().Forget();
+                    break;
+
                 case DialogueElement.ElementType.Output:
                     var output = (DialogueOutput)_currentElement;
                     OnOutput?.Invoke(output);

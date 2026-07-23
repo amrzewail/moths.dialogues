@@ -58,6 +58,7 @@ namespace Moths.Dialogues.Editor.Graphs
             Button newJumpBtn = new Button(() => NewElementCallback<DialogueJump>(_dialogue.AddJump)) { tooltip = "Jump" };
             Button newOutputBtn = new Button(() => NewElementCallback<DialogueOutput>(_dialogue.AddOutput)) { tooltip = "Output" };
             Button newRandomBtn = new Button(() => NewElementCallback<DialogueRandom>(_dialogue.AddRandom)) { tooltip = "Random" };
+            Button newSwitchBtn = new Button(() => NewElementCallback<DialogueSwitch>(_dialogue.AddSwitch)) { tooltip = "Switch" };
 
             newSequenceBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_sequence");
             newChoicesBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_choices");
@@ -66,6 +67,7 @@ namespace Moths.Dialogues.Editor.Graphs
             newJumpBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_jump");
             newOutputBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_output");
             newRandomBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_random");
+            newSwitchBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_switch");
 
             newSequenceBtn.AddToClassList("sidebar-element-btn");
             newChoicesBtn.AddToClassList("sidebar-element-btn");
@@ -74,6 +76,7 @@ namespace Moths.Dialogues.Editor.Graphs
             newJumpBtn.AddToClassList("sidebar-element-btn");
             newOutputBtn.AddToClassList("sidebar-element-btn");
             newRandomBtn.AddToClassList("sidebar-element-btn");
+            newSwitchBtn.AddToClassList("sidebar-element-btn");
 
             editCategory.Content.Add(newSequenceBtn);
             editCategory.Content.Add(newChoicesBtn);
@@ -82,6 +85,7 @@ namespace Moths.Dialogues.Editor.Graphs
             editCategory.Content.Add(newJumpBtn);
             editCategory.Content.Add(newOutputBtn);
             editCategory.Content.Add(newRandomBtn);
+            editCategory.Content.Add(newSwitchBtn);
 
             _graphView.EdgeCreated += EdgeCreatedCallback;
             _graphView.EdgeRemoved += EdgeRemovedCallback;
@@ -109,6 +113,7 @@ namespace Moths.Dialogues.Editor.Graphs
             else if (node is DialogueJumpNode jumpNode) _dialogue.RemoveJump(jumpNode.GUID);
             else if (node is DialogueOutputNode outputNode) _dialogue.RemoveOutput(outputNode.GUID);
             else if (node is DialogueRandomNode randomNode) _dialogue.RemoveRandom(randomNode.GUID);
+            else if (node is DialogueSwitchNode switchNode) _dialogue.RemoveSwitch(switchNode.GUID);
 
             if (_dialogue.StartingGuid == (node as BasicNode).GUID) _dialogue.StartingGuid = string.Empty;
 
@@ -247,6 +252,12 @@ namespace Moths.Dialogues.Editor.Graphs
                     _dialogue.AddRandom(random);
                     newNode = AddDialogueNode(random, node.position - copyData.nodes[0].position);
                 }
+                else if (type == typeof(DialogueSwitchNode))
+                {
+                    var switchData = new DialogueSwitch(node.data);
+                    _dialogue.AddSwitch(switchData);
+                    newNode = AddDialogueNode(switchData, node.position - copyData.nodes[0].position);
+                }
 
                 if (newNode != null)
                 {
@@ -306,6 +317,7 @@ namespace Moths.Dialogues.Editor.Graphs
             foreach (var jump in _dialogue.Jumps) AddDialogueNode(jump);
             foreach (var output in _dialogue.Outputs) AddDialogueNode(output);
             foreach (var random in _dialogue.Randoms) AddDialogueNode(random);
+            foreach (var switchData in _dialogue.Switches) AddDialogueNode(switchData);
         }
 
         private BasicNode AddDialogueNode(DialogueAction action, Vector3 offset = default)
@@ -368,6 +380,16 @@ namespace Moths.Dialogues.Editor.Graphs
             var nodeMetadata = _editor.Graph.FindNodeByGuid(random.Guid, out var isNew);
             if (isNew) nodeMetadata.position = _graphView.GetViewportCenter() + offset;
             var node = new DialogueRandomNode(_dialogue, nodeMetadata, random);
+            _graphView.AddNode(node);
+            node.PortsUpdated += RefreshConnections;
+            return node;
+        }
+
+        private BasicNode AddDialogueNode(DialogueSwitch switchData, Vector3 offset = default)
+        {
+            var nodeMetadata = _editor.Graph.FindNodeByGuid(switchData.Guid, out var isNew);
+            if (isNew) nodeMetadata.position = _graphView.GetViewportCenter() + offset;
+            var node = new DialogueSwitchNode(_dialogue, nodeMetadata, switchData);
             _graphView.AddNode(node);
             node.PortsUpdated += RefreshConnections;
             return node;

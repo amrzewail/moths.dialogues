@@ -17,6 +17,7 @@ namespace Moths.Dialogues
         [SerializeField] List<DialogueCondition> _conditions = new();
         [SerializeField] List<DialogueJump> _jumps = new();
         [SerializeField] List<DialogueRandom> _randoms = new();
+        [SerializeField] List<DialogueSwitch> _switches = new();
 
         [SerializeField] SerializableDictionary<string, string> _connections = new();
 
@@ -29,6 +30,7 @@ namespace Moths.Dialogues
         public IReadOnlyList<DialogueCondition> Conditions => _conditions;
         public IReadOnlyList<DialogueJump> Jumps => _jumps;
         public IReadOnlyList<DialogueRandom> Randoms => _randoms;
+        public IReadOnlyList<DialogueSwitch> Switches => _switches;
         public SerializableDictionary<string, string> Connections => _connections;
 
         public DialogueElement Start()
@@ -80,6 +82,10 @@ namespace Moths.Dialogues
             {
                 if (_randoms[i].Guid == guid) return _randoms[i];
             }
+            for (int i = 0; i < _switches.Count; i++)
+            {
+                if (_switches[i].Guid == guid) return _switches[i];
+            }
             return default;
         }
 
@@ -112,6 +118,9 @@ namespace Moths.Dialogues
 
         public void AddRandom(DialogueRandom random) => _randoms.Add(random);
         public void RemoveRandom(string guid) => _randoms.RemoveAll(r => r.Guid == guid);
+
+        public void AddSwitch(DialogueSwitch switchData) => _switches.Add(switchData);
+        public void RemoveSwitch(string guid) => _switches.RemoveAll(s => s.Guid == guid);
 
         public void AddSpeaker(DialogueSpeaker speaker) => _speakers.Add(speaker);
         public void RemoveSpeaker(string guid) => _speakers.RemoveAll(s => s.Guid == guid);

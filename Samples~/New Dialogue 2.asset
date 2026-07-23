@@ -14,9 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: Moths.Dialogues.Editor::Moths.Dialogues.Editor.DialogueGraphProperties
   _nodes:
   - guid: 65c0f7c7-4e2e-4eeb-86c7-d8c920c9e2a9
-    position: {x: 209, y: 0}
+    position: {x: 305.00003, y: 0.000035226345}
   - guid: 5ec2adda-0b35-4f3f-9785-9b0b032368d3
-    position: {x: 432, y: 0}
+    position: {x: 818, y: 102.99999}
+  - guid: 978c6a2c-0d94-4977-a7dd-09dfcf1bad7f
+    position: {x: 198.51227, y: 243.66164}
+  - guid: cf29ee02-6295-4646-b60c-7ebb6b87ae10
+    position: {x: 376.00003, y: 244.00002}
+  - guid: c2aed127-d999-48a9-8435-5d8f481830b0
+    position: {x: 511.99997, y: 193.17645}
+  - guid: bfee96e2-3cae-4866-92b3-3e16083a3c81
+    position: {x: 619.56903, y: -7.999954}
+  - guid: d23b7291-2939-458f-b6fc-c04358b7ba62
+    position: {x: 817.95844, y: 0.00003523502}
+  - guid: c58c8f89-6ae7-4966-ae6d-f9d1fe865f10
+    position: {x: 163.2949, y: -7.636997}
+  - guid: efa82412-fe08-4ed5-96db-9237716a9cb6
+    position: {x: 488.00003, y: 1.0000458}
+  - guid: bbeb61e1-8454-4343-b63c-aae438157b23
+    position: {x: 738.07184, y: 205.50002}
+  - guid: 4ae00bcf-7ecc-4085-85c8-1a31a1d83d07
+    position: {x: 50.319458, y: 148.00005}
+  - guid: 0be25b41-5079-4baa-bda9-a483ce8326a1
+    position: {x: 339, y: 148.00002}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29,15 +49,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bb35f22350c6f747b017852da398676, type: 3}
   m_Name: New Dialogue 2
   m_EditorClassIdentifier: Moths.Dialogues::Moths.Dialogues.Dialogue
-  _startingGuid: 65c0f7c7-4e2e-4eeb-86c7-d8c920c9e2a9
-  _speakers: []
+  _startingGuid: c58c8f89-6ae7-4966-ae6d-f9d1fe865f10
+  _speakers:
+  - _guid: 91b1c4e0-ba10-4af0-9733-b8ea4f7b8335
+    _name:
+      _useLocalization: 0
+      _text: Amr
+      _localization:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    _data:
+      _object:
+        rid: -2
+  - _guid: b5ce392f-30a8-43dc-9e9d-02d413caf311
+    _name:
+      _useLocalization: 0
+      _text: Bilal
+      _localization:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    _data:
+      _object:
+        rid: -2
   _sequences:
   - _guid: 65c0f7c7-4e2e-4eeb-86c7-d8c920c9e2a9
     _outputGuid: 34fce042-af0f-4287-9b91-78ab501bdc1b
     _tag: hello
     _lines:
     - _dialogue: {fileID: 11400000}
-      _speakerGuid: 
+      _speakerGuid: 91b1c4e0-ba10-4af0-9733-b8ea4f7b8335
       _line:
         _useLocalization: 0
         _text: hello
@@ -53,20 +105,168 @@ MonoBehaviour:
       _data:
         _object:
           rid: -2
-  _choices: []
-  _actions: []
+    - _dialogue: {fileID: 11400000}
+      _speakerGuid: b5ce392f-30a8-43dc-9e9d-02d413caf311
+      _line:
+        _useLocalization: 0
+        _text: 
+        _localization:
+          m_TableReference:
+            m_TableCollectionName: 
+          m_TableEntryReference:
+            m_KeyId: 0
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+      _data:
+        _object:
+          rid: -2
+    - _dialogue: {fileID: 11400000}
+      _speakerGuid: 91b1c4e0-ba10-4af0-9733-b8ea4f7b8335
+      _line:
+        _useLocalization: 0
+        _text: 
+        _localization:
+          m_TableReference:
+            m_TableCollectionName: 
+          m_TableEntryReference:
+            m_KeyId: 0
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+      _data:
+        _object:
+          rid: -2
+    - _dialogue: {fileID: 11400000}
+      _speakerGuid: b5ce392f-30a8-43dc-9e9d-02d413caf311
+      _line:
+        _useLocalization: 0
+        _text: 
+        _localization:
+          m_TableReference:
+            m_TableCollectionName: 
+          m_TableEntryReference:
+            m_KeyId: 0
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+      _data:
+        _object:
+          rid: -2
+  - _guid: c2aed127-d999-48a9-8435-5d8f481830b0
+    _outputGuid: b77118b2-6dbc-409c-9460-896c057fd32c
+    _tag: 
+    _lines: []
+  - _guid: 0be25b41-5079-4baa-bda9-a483ce8326a1
+    _outputGuid: 7cbaa5b5-b3d4-44b0-bc1e-5bd6a394a6dd
+    _tag: 
+    _lines: []
+  _choices:
+  - _guid: bfee96e2-3cae-4866-92b3-3e16083a3c81
+    _tag: 
+    _choices:
+    - _guid: 15e1dfd0-197c-4908-98b6-065ddf4bd634
+      _line:
+        _useLocalization: 0
+        _text: 
+        _localization:
+          m_TableReference:
+            m_TableCollectionName: 
+          m_TableEntryReference:
+            m_KeyId: 0
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+    - _guid: d860a495-7f20-4244-9b1e-5c225d469150
+      _line:
+        _useLocalization: 0
+        _text: 
+        _localization:
+          m_TableReference:
+            m_TableCollectionName: 
+          m_TableEntryReference:
+            m_KeyId: 0
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+  _actions:
+  - _guid: efa82412-fe08-4ed5-96db-9237716a9cb6
+    _outputGuid: be404903-dd78-48df-a7ce-c888d8581641
+    _tag: 
+    _action:
+      _object:
+        rid: 2960699131951841280
   _outputs:
   - _guid: 5ec2adda-0b35-4f3f-9785-9b0b032368d3
     _name: Output
     _tag: 
-  _conditions: []
-  _jumps: []
+  - _guid: d23b7291-2939-458f-b6fc-c04358b7ba62
+    _name: Output
+    _tag: 
+  _conditions:
+  - _guid: 4ae00bcf-7ecc-4085-85c8-1a31a1d83d07
+    _trueOutputGuid: 6efb6dae-cdf0-4d81-8508-b67db7e07684
+    _falseOutputGuid: 08c78e91-02ca-44a0-8e5a-cd1ebd167d5f
+    _tag: 
+    _condition:
+      _object:
+        rid: -2
+  _jumps:
+  - _guid: bbeb61e1-8454-4343-b63c-aae438157b23
+    _outputGuid: 65c0f7c7-4e2e-4eeb-86c7-d8c920c9e2a9
+    _targetTag: hello
+  _randoms:
+  - _guid: 978c6a2c-0d94-4977-a7dd-09dfcf1bad7f
+    _tag: 
+    _outputCount: 4
+    _outputs:
+    - 569a4de8-084f-4f4a-b464-69a536d0c8a4
+    - 5cf986c7-ed34-4dc0-9a85-e2ca3b6f591d
+    - 3e29f1a6-0142-45e9-b4eb-c7c785b9828c
+    - 6c4cabd4-195a-4c06-8edc-c0afd8cd5dc0
+  - _guid: cf29ee02-6295-4646-b60c-7ebb6b87ae10
+    _tag: 
+    _outputCount: 5
+    _outputs:
+    - 8b874cf9-c8e4-4606-9d3f-e109d3e3119b
+    - d2c1df7b-8d2e-4545-9d8b-528981ad312b
+    - ce1b74be-30d2-4592-943b-e0df8e937e58
+    - 59ca2ef5-47a3-4372-a8dc-7be3195ace65
+    - da62e790-4c58-4f6d-8454-e8b80c55001d
+  - _guid: c58c8f89-6ae7-4966-ae6d-f9d1fe865f10
+    _tag: asd
+    _outputCount: 5
+    _outputs:
+    - 29b606be-afb8-4954-8e95-e12343df6c23
+    - a2e63323-0589-4c4b-a2cb-c8ae8069add0
+    - 399932a0-aefb-4e6a-8035-94ef0125a22b
+    - 9d981ae1-3613-45f8-bc18-4c39fb840e95
+    - 66e1bb54-346d-44d7-93d3-3af5c13a0f73
   _connections:
     _pairs:
+    - key: 15e1dfd0-197c-4908-98b6-065ddf4bd634
+      value: d23b7291-2939-458f-b6fc-c04358b7ba62
     - key: 34fce042-af0f-4287-9b91-78ab501bdc1b
-      value: 5ec2adda-0b35-4f3f-9785-9b0b032368d3
+      value: efa82412-fe08-4ed5-96db-9237716a9cb6
+    - key: 29b606be-afb8-4954-8e95-e12343df6c23
+      value: bbeb61e1-8454-4343-b63c-aae438157b23
+    - key: d860a495-7f20-4244-9b1e-5c225d469150
+      value: bbeb61e1-8454-4343-b63c-aae438157b23
+    - key: 9d981ae1-3613-45f8-bc18-4c39fb840e95
+      value: 0be25b41-5079-4baa-bda9-a483ce8326a1
+    - key: 7cbaa5b5-b3d4-44b0-bc1e-5bd6a394a6dd
+      value: c2aed127-d999-48a9-8435-5d8f481830b0
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 2960699131951841280
+      type: {class: WaitAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
+      data:
+        _time: 5
