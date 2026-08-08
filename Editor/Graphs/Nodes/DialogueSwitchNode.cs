@@ -114,6 +114,11 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
                 });
                 inspector.Add(countField);
 
+                var checkFromLastProp = switchProp.FindPropertyRelative("_checkFromLast");
+                var checkFromLastField = new PropertyField(checkFromLastProp, "Check From Last");
+                checkFromLastField.Bind(serializedObject);
+                inspector.Add(checkFromLastField);
+
                 var casesProp = switchProp.FindPropertyRelative("_cases");
                 for (int i = 0; i < casesProp.arraySize; i++)
                 {

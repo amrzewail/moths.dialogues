@@ -31,6 +31,7 @@ namespace Moths.Dialogues
         [SerializeField] private string _guid;
         [SerializeField] private string _tag;
         [SerializeField] private int _count;
+        [SerializeField] private bool _checkFromLast;
         [SerializeField] private List<SwitchCase> _cases = new List<SwitchCase>();
         [SerializeField] private string _defaultOutputGuid;
 
@@ -92,19 +93,38 @@ namespace Moths.Dialogues
         {
             if (_cases != null)
             {
-                for (int i = 0; i < _cases.Count; i++)
+                if (_checkFromLast)
                 {
-                    var c = _cases[i];
-                    if (c.Condition != null && c.Condition.Value != null)
+                    for (int i = _cases.Count - 1; i >= 0; i--)
                     {
-                        if (c.Condition.Value.Check())
-                        {
-                            return c.OutputGuid;
-                        }
+                        var output = CheckSwitchCase(i);
+                        if (string.IsNullOrEmpty(output)) continue;
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < _cases.Count; i++)
+                    {
+                        var output = CheckSwitchCase(i);
+                        if (string.IsNullOrEmpty(output)) continue;
                     }
                 }
             }
+
             return _defaultOutputGuid;
+        }
+
+        private string CheckSwitchCase(int index)
+        {
+            var c = _cases[index];
+            if (c.Condition != null && c.Condition.Value != null)
+            {
+                if (c.Condition.Value.Check())
+                {
+                    return c.OutputGuid;
+                }
+            }
+            return null;
         }
     }
 }
