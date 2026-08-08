@@ -98,7 +98,7 @@ namespace Moths.Dialogues
                     for (int i = _cases.Count - 1; i >= 0; i--)
                     {
                         var output = CheckSwitchCase(i);
-                        if (string.IsNullOrEmpty(output)) continue;
+                        if (!string.IsNullOrEmpty(output)) return output;
                     }
                 }
                 else
@@ -106,7 +106,7 @@ namespace Moths.Dialogues
                     for (int i = 0; i < _cases.Count; i++)
                     {
                         var output = CheckSwitchCase(i);
-                        if (string.IsNullOrEmpty(output)) continue;
+                        if (!string.IsNullOrEmpty(output)) return output;
                     }
                 }
             }
