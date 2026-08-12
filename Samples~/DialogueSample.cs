@@ -5,6 +5,24 @@ using UnityEngine;
 
 namespace Moths.Dialogues.Samples
 {
+    [System.Serializable]
+    public class SampleProceduralChoices : IProceduralDialogueChoices
+    {
+        public IReadOnlyList<DialogueChoice> GetChoices()
+        {
+            return new List<DialogueChoice>()
+            {
+                new("1", new LString("hello")),
+                new("2", new LString("hello 2")),
+            };
+        }
+
+        public void ProcessChoice(DialogueChoice choice)
+        {
+
+        }
+    }
+
     public class DialogueSample : MonoBehaviour
     {
         private DialogueRunner _runner = new();
@@ -27,14 +45,6 @@ namespace Moths.Dialogues.Samples
 
         private void Update()
         {
-            _dictionary["hello test"] = 20;
-
-            foreach(var pair in _dictionary)
-            {
-                Debug.Log($"{pair.Key}: {pair.Value}");
-            }
-
-
             foreach (var pair in _dictionary2)
             {
                 pair.value += Time.deltaTime;

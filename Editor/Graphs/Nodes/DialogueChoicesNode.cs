@@ -54,8 +54,8 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
             if (_choices.IsProcedural)
             {
                 var p = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(DialogueElement));
-                p.portName = "Next";
-                p.viewDataKey = _choices.Guid;
+                p.portName = "Procedural";
+                p.viewDataKey = _choices.ProceduralGuid;
                 outputContainer.Add(p);
             }
             else
@@ -141,6 +141,12 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
                     int currentIndex = i; // Crucial: Capture the index into a local variable for the button lambdas
                     var choiceProp = listProp.GetArrayElementAtIndex(currentIndex);
 
+                    var verticalContainer = new VisualElement();
+                    verticalContainer.style.marginBottom = 4;
+                    verticalContainer.style.paddingBottom = 4;
+                    verticalContainer.style.borderBottomWidth = 1;
+                    verticalContainer.style.borderBottomColor = new StyleColor(new Color(0.3f, 0.3f, 0.3f, 1f)); // Subtle separator
+
                     // --- 1. Row Container ---
                     var choiceElement = new VisualElement();
                     choiceElement.style.flexDirection = FlexDirection.Row; // Align items horizontally
@@ -214,6 +220,11 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
                     { text = "✖" };
                     deleteBtn.style.backgroundColor = new StyleColor(new Color(0.6f, 0.2f, 0.2f, 1f)); // Slight red tint for danger
 
+
+                    var data = new PropertyField(choiceProp.FindPropertyRelative("_data"));
+                    data.style.flexGrow = 1;
+                    data.Bind(serializedObject);
+
                     // Assemble the buttons
                     buttonGroup.Add(moveUpBtn);
                     buttonGroup.Add(moveDownBtn);
@@ -223,7 +234,10 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
                     choiceElement.Add(line);
                     choiceElement.Add(buttonGroup);
 
-                    choicesContainer.Add(choiceElement);
+                    verticalContainer.Add(choiceElement);
+                    verticalContainer.Add(data);
+
+                    choicesContainer.Add(verticalContainer);
                 }
 
                 // --- 4. Add Choice Button ---

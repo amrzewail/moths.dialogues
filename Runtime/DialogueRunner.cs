@@ -65,7 +65,7 @@ namespace Moths.Dialogues
                     if (choices.IsProcedural)
                     {
                         choices.ProcessChoice(choice);
-                        _currentElement = _currentDialogue.Next(choices.Guid);
+                        _currentElement = _currentDialogue.Next(choices.ProceduralGuid);
                     }
                     else
                     {

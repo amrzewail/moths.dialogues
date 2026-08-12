@@ -13,6 +13,14 @@ namespace Moths.Dialogues
         [SerializeField] LString _line;
         [SerializeField] InterfaceReference<IDialogueLineData> _data;
 
+        public DialogueLine(DialogueLine copy)
+        {
+            _dialogue = copy._dialogue;
+            _speakerGuid = copy._speakerGuid;
+            _line = copy._line;
+            _data.Copy(copy._data);
+        }
+
         public DialogueLine(Dialogue dialogueReference)
         {
             this = default;

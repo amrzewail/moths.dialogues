@@ -26,7 +26,11 @@ namespace Moths.Dialogues
         {
             var instance = JsonUtility.FromJson<DialogueSequence>(serializationData);
             _tag = instance.Tag;
-            _lines = new List<DialogueLine>(instance._lines);
+            _lines = new();
+            foreach(var line in instance._lines)
+            {
+                _lines.Add(new(line));
+            }
         }
 
         public string Serialize()
