@@ -414,6 +414,7 @@ GameObject:
   - component: {fileID: 275925865}
   - component: {fileID: 275925864}
   - component: {fileID: 275925863}
+  - component: {fileID: 275925867}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -516,6 +517,85 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &275925867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275925862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a10bffdb52011f14ebdade6d072bf09b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Moths.Stories.Samples.StoryMonoBehaviourTest
+  _testOptional:
+    _isEnabled: 0
+    _value: 
+  _locale:
+    _isEnabled: 0
+    _value:
+      _useLocalization: 0
+      _text: 
+      _localization:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  _testOverride:
+    _isOverriden: 0
+    _value: 
+    _override: 
+  _optionalProps:
+    _isEnabled: 1
+    _value:
+      toggle: 0
+      str: 
+      optional:
+        _isEnabled: 0
+        _value:
+          _references: {fileID: 0}
+          _identifier: 0
+      _locale:
+        _isEnabled: 0
+        _value:
+          _useLocalization: 0
+          _text: 
+          _localization:
+            m_TableReference:
+              m_TableCollectionName: 
+            m_TableEntryReference:
+              m_KeyId: 0
+              m_Key: 
+            m_FallbackState: 0
+            m_WaitForCompletion: 0
+            m_LocalVariables: []
+      overridable:
+        _isOverriden: 0
+        _value:
+          _references: {fileID: 0}
+          _identifier: 0
+        _override:
+          _references: {fileID: 0}
+          _identifier: 0
+      _optionalDialogue:
+        _isEnabled: 0
+        _value: {fileID: 0}
+  _optionalDialogue:
+    _isEnabled: 1
+    _value: {fileID: 0}
+  _overrideableDialogue:
+    _isOverriden: 1
+    _value: {fileID: 0}
+    _override: {fileID: 11400000, guid: 224506ec82d03bc49a992926548bc451, type: 2}
+  _dialogue: {fileID: 11400000, guid: 224506ec82d03bc49a992926548bc451, type: 2}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1340902029
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,6 +641,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Moths.Dialogues.Samples.DialogueSample
   _dialogue: {fileID: 11400000, guid: ec0aa0b1400d7cc488705f7eb8baf7fc, type: 2}
+  _dictionary:
+    _pairs: []
+  _dictionary2:
+    _pairs: []
 --- !u!1 &1409794597
 GameObject:
   m_ObjectHideFlags: 0

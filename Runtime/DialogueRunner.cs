@@ -60,7 +60,18 @@ namespace Moths.Dialogues
                     if (choiceIndex < 0) return;
                     
                     var choices = (DialogueChoices)_currentElement;
-                    _currentElement = _currentDialogue.Next(choices.Choices[choiceIndex].Guid);
+                    var choice = choices.Choices[choiceIndex];
+                    
+                    if (choices.IsProcedural)
+                    {
+                        choices.ProcessChoice(choice);
+                        _currentElement = _currentDialogue.Next(choices.Guid);
+                    }
+                    else
+                    {
+                        _currentElement = _currentDialogue.Next(choice.Guid);
+                    }
+                    
                     ProcessCurrentElement().Forget();
                     break;
             }

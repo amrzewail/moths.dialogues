@@ -51,12 +51,22 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
             entryPort.viewDataKey = _choices.Guid;
             inputContainer.Add(entryPort);
 
-            foreach (var choice in _choices.Choices)
+            if (_choices.IsProcedural)
             {
                 var p = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(DialogueElement));
-                p.portName = choice.Line.ToString();
-                p.viewDataKey = choice.Guid;
+                p.portName = "Next";
+                p.viewDataKey = _choices.Guid;
                 outputContainer.Add(p);
+            }
+            else
+            {
+                foreach (var choice in _choices.Choices)
+                {
+                    var p = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(DialogueElement));
+                    p.portName = choice.Line.ToString();
+                    p.viewDataKey = choice.Guid;
+                    outputContainer.Add(p);
+                }
             }
 
             PortsUpdated?.Invoke();
@@ -84,6 +94,15 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
                 tagField.Bind(serializedObject);
                 tagField.RegisterValueChangeCallback(evt => UpdateTitle());
                 inspector.Add(tagField);
+
+                var proceduralField = new PropertyField(choicesProp.FindPropertyRelative("_proceduralChoices"), "Procedural Choices");
+                proceduralField.Bind(serializedObject);
+                proceduralField.RegisterValueChangeCallback(evt =>
+                {
+                    GeneratePorts();
+                    PortsUpdated?.Invoke();
+                });
+                inspector.Add(proceduralField);
             }
 
             var listProp = choicesProp.FindPropertyRelative("_choices");

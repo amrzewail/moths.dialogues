@@ -273,6 +273,8 @@ MonoBehaviour:
       _object:
         rid: 6019517847292346437
   _jumps: []
+  _randoms: []
+  _switches: []
   _connections:
     _pairs:
     - key: b72ceaa9-e37b-4fed-b468-4a5eb3d9fb82

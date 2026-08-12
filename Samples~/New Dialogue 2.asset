@@ -37,6 +37,8 @@ MonoBehaviour:
     position: {x: 50.319458, y: 148.00005}
   - guid: 0be25b41-5079-4baa-bda9-a483ce8326a1
     position: {x: 339, y: 148.00002}
+  - guid: 4a06fa4e-2f30-4c1b-b98e-594c99c16455
+    position: {x: 622, y: 331.86404}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,6 +249,20 @@ MonoBehaviour:
     - 399932a0-aefb-4e6a-8035-94ef0125a22b
     - 9d981ae1-3613-45f8-bc18-4c39fb840e95
     - 66e1bb54-346d-44d7-93d3-3af5c13a0f73
+  _switches:
+  - _guid: 4a06fa4e-2f30-4c1b-b98e-594c99c16455
+    _tag: 
+    _count: 2
+    _cases:
+    - _condition:
+        _object:
+          rid: -2
+      _outputGuid: 3a6f2e14-b7ce-4991-a8dd-00027da46214
+    - _condition:
+        _object:
+          rid: -2
+      _outputGuid: 626e7ffd-6f02-44c3-9a53-ecfa93fd7a78
+    _defaultOutputGuid: 3313378a-19de-418b-8214-e882ccd49583
   _connections:
     _pairs:
     - key: 15e1dfd0-197c-4908-98b6-065ddf4bd634
