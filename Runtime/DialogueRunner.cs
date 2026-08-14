@@ -116,7 +116,7 @@ namespace Moths.Dialogues
 
             void NestedRunnerOutputCallback(string guid, DialogueOutput output)
             {
-                _currentElement = _currentDialogue.Next(output.Guid);
+                _currentElement = _currentDialogue.Next(((DialogueNested)_currentElement).GetPortOutput(output.Guid));
                 ProcessCurrentElement().Forget();
             }
 
