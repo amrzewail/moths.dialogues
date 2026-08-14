@@ -31,6 +31,16 @@ namespace Moths.Dialogues.Editor
 
         public IReadOnlyList<Node> Nodes => _nodes;
 
+        public Node FindNodeByGuid(string guid)
+        {
+            for (int i = 0; i < Nodes.Count; i++)
+            {
+                Node node = Nodes[i];
+                if (node.guid == guid) return node;
+            }
+            return default;
+        }
+
         public Node FindNodeByGuid(string guid, out bool isNew)
         {
             isNew = false;

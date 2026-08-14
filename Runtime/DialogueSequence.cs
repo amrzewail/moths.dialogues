@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Moths.Dialogues
 {
+
     [System.Serializable]
     public class DialogueSequence : ISerializable
     {

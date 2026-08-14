@@ -51,41 +51,15 @@ namespace Moths.Dialogues.Editor.Graphs
 
             var editCategory = sidebar.AddCategory("ELEMENTS");
 
-            Button newSequenceBtn = new Button(() => NewElementCallback<DialogueSequence>(_dialogue.AddSequence)) { tooltip = "Sequence" };
-            Button newChoicesBtn = new Button(() => NewElementCallback<DialogueChoices>(_dialogue.AddChoices)) { tooltip = "Choices" };
-            Button newConditionBtn = new Button(() => NewElementCallback<DialogueCondition>(_dialogue.AddCondition)) { tooltip = "Condition" };
-            Button newActionBtn = new Button(() => NewElementCallback<DialogueAction>(_dialogue.AddAction)) { tooltip = "Action" };
-            Button newJumpBtn = new Button(() => NewElementCallback<DialogueJump>(_dialogue.AddJump)) { tooltip = "Jump" };
-            Button newOutputBtn = new Button(() => NewElementCallback<DialogueOutput>(_dialogue.AddOutput)) { tooltip = "Output" };
-            Button newRandomBtn = new Button(() => NewElementCallback<DialogueRandom>(_dialogue.AddRandom)) { tooltip = "Random" };
-            Button newSwitchBtn = new Button(() => NewElementCallback<DialogueSwitch>(_dialogue.AddSwitch)) { tooltip = "Switch" };
-
-            newSequenceBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_sequence");
-            newChoicesBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_choices");
-            newConditionBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_condition");
-            newActionBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_action");
-            newJumpBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_jump");
-            newOutputBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_output");
-            newRandomBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_random");
-            newSwitchBtn.iconImage = Resources.Load<Texture2D>("Moths.Dialogues/icon_switch");
-
-            newSequenceBtn.AddToClassList("sidebar-element-btn");
-            newChoicesBtn.AddToClassList("sidebar-element-btn");
-            newConditionBtn.AddToClassList("sidebar-element-btn");
-            newActionBtn.AddToClassList("sidebar-element-btn");
-            newJumpBtn.AddToClassList("sidebar-element-btn");
-            newOutputBtn.AddToClassList("sidebar-element-btn");
-            newRandomBtn.AddToClassList("sidebar-element-btn");
-            newSwitchBtn.AddToClassList("sidebar-element-btn");
-
-            editCategory.Content.Add(newSequenceBtn);
-            editCategory.Content.Add(newChoicesBtn);
-            editCategory.Content.Add(newConditionBtn);
-            editCategory.Content.Add(newActionBtn);
-            editCategory.Content.Add(newJumpBtn);
-            editCategory.Content.Add(newOutputBtn);
-            editCategory.Content.Add(newRandomBtn);
-            editCategory.Content.Add(newSwitchBtn);
+            InitializeSidebarButton<DialogueSequence>(_dialogue.AddSequence, "Sequence", "Moths.Dialogues/icon_sequence", editCategory.Content);
+            InitializeSidebarButton<DialogueChoices>(_dialogue.AddChoices, "Choices", "Moths.Dialogues/icon_choices", editCategory.Content);
+            InitializeSidebarButton<DialogueCondition>(_dialogue.AddCondition, "Condition", "Moths.Dialogues/icon_condition", editCategory.Content);
+            InitializeSidebarButton<DialogueAction>(_dialogue.AddAction, "Action", "Moths.Dialogues/icon_action", editCategory.Content);
+            InitializeSidebarButton<DialogueJump>(_dialogue.AddJump, "Jump", "Moths.Dialogues/icon_jump", editCategory.Content);
+            InitializeSidebarButton<DialogueOutput>(_dialogue.AddOutput, "Output", "Moths.Dialogues/icon_output", editCategory.Content);
+            InitializeSidebarButton<DialogueRandom>(_dialogue.AddRandom, "Random", "Moths.Dialogues/icon_random", editCategory.Content);
+            InitializeSidebarButton<DialogueSwitch>(_dialogue.AddSwitch, "Switch", "Moths.Dialogues/icon_switch", editCategory.Content);
+            InitializeSidebarButton<DialogueNested>(_dialogue.AddDialogue, "Dialogue", "Moths.Dialogues/icon_dialogue", editCategory.Content);
 
             _graphView.EdgeCreated += EdgeCreatedCallback;
             _graphView.EdgeRemoved += EdgeRemovedCallback;
@@ -102,6 +76,14 @@ namespace Moths.Dialogues.Editor.Graphs
             Refresh();
         }
 
+        private void InitializeSidebarButton<T>(Action<T> addMethod, string tooltip, string icon, VisualElement container) where T : new()
+        {
+            Button newBtn = new Button(() => NewElementCallback<T>(addMethod)) { tooltip = tooltip };
+            newBtn.iconImage = Resources.Load<Texture2D>(icon);
+            newBtn.AddToClassList("sidebar-element-btn");
+            container.Add(newBtn);
+        }
+
         private void NodeRemovedCallback(UnityEditor.Experimental.GraphView.Node node)
         {
             _editor.Inspect(null, null);
@@ -114,6 +96,7 @@ namespace Moths.Dialogues.Editor.Graphs
             else if (node is DialogueOutputNode outputNode) _dialogue.RemoveOutput(outputNode.GUID);
             else if (node is DialogueRandomNode randomNode) _dialogue.RemoveRandom(randomNode.GUID);
             else if (node is DialogueSwitchNode switchNode) _dialogue.RemoveSwitch(switchNode.GUID);
+            else if (node is DialogueNestedNode nestedNode) _dialogue.RemoveDialogue(nestedNode.GUID);
 
             if (_dialogue.StartingGuid == (node as BasicNode).GUID) _dialogue.StartingGuid = string.Empty;
 
@@ -185,13 +168,16 @@ namespace Moths.Dialogues.Editor.Graphs
                 }
                 else if (element is Edge edge)
                 {
-                    serialized.connections.Add(new()
+                    if (edge.output.node is BasicNode outputNode && edge.input.node is BasicNode inputNode)
                     {
-                        outputNodeGuid = ((BasicNode)edge.output.node).GUID,
-                        outputPortIndex = edge.output.node.Query<Port>().ToList().IndexOf(edge.output),
-                        inputNodeGuid = ((BasicNode)edge.input.node).GUID,
-                        inputPortIndex = edge.input.node.Query<Port>().ToList().IndexOf(edge.input),
-                    });
+                        serialized.connections.Add(new()
+                        {
+                            outputNodeGuid = outputNode.GUID,
+                            outputPortIndex = outputNode.Query<Port>().ToList().IndexOf(edge.output),
+                            inputNodeGuid = inputNode.GUID,
+                            inputPortIndex = inputNode.Query<Port>().ToList().IndexOf(edge.input),
+                        });
+                    }
                 }
 
             }
@@ -258,6 +244,12 @@ namespace Moths.Dialogues.Editor.Graphs
                     _dialogue.AddSwitch(switchData);
                     newNode = AddDialogueNode(switchData, node.position - copyData.nodes[0].position);
                 }
+                else if (type == typeof(DialogueNestedNode))
+                {
+                    var nestedData = new DialogueNested(node.data);
+                    _dialogue.AddDialogue(nestedData);
+                    newNode = AddDialogueNode(nestedData, node.position - copyData.nodes[0].position);
+                }
 
                 if (newNode != null)
                 {
@@ -318,6 +310,7 @@ namespace Moths.Dialogues.Editor.Graphs
             foreach (var output in _dialogue.Outputs) AddDialogueNode(output);
             foreach (var random in _dialogue.Randoms) AddDialogueNode(random);
             foreach (var switchData in _dialogue.Switches) AddDialogueNode(switchData);
+            foreach (var nestedData in _dialogue.Dialogues) AddDialogueNode(nestedData);
         }
 
         private BasicNode AddDialogueNode(DialogueAction action, Vector3 offset = default)
@@ -372,7 +365,14 @@ namespace Moths.Dialogues.Editor.Graphs
             if (isNew) nodeMetadata.position = _graphView.GetViewportCenter() + offset;
             var node = new DialogueOutputNode(_dialogue, nodeMetadata, output);
             _graphView.AddNode(node);
+            node.PositionChanged += OutputNodePositionChangedCallback;
             return node;
+        }
+
+        private void OutputNodePositionChangedCallback()
+        {
+            _dialogue.SortOutputs((x, y) => _editor.Graph.FindNodeByGuid(x.Guid).position.y.CompareTo(_editor.Graph.FindNodeByGuid(y.Guid).position.y));
+            EditorUtility.SetDirty(_dialogue);
         }
 
         private BasicNode AddDialogueNode(DialogueRandom random, Vector3 offset = default)
@@ -390,6 +390,16 @@ namespace Moths.Dialogues.Editor.Graphs
             var nodeMetadata = _editor.Graph.FindNodeByGuid(switchData.Guid, out var isNew);
             if (isNew) nodeMetadata.position = _graphView.GetViewportCenter() + offset;
             var node = new DialogueSwitchNode(_dialogue, nodeMetadata, switchData);
+            _graphView.AddNode(node);
+            node.PortsUpdated += RefreshConnections;
+            return node;
+        }
+
+        private BasicNode AddDialogueNode(DialogueNested nestedData, Vector3 offset = default)
+        {
+            var nodeMetadata = _editor.Graph.FindNodeByGuid(nestedData.Guid, out var isNew);
+            if (isNew) nodeMetadata.position = _graphView.GetViewportCenter() + offset;
+            var node = new DialogueNestedNode(_dialogue, nodeMetadata, nestedData);
             _graphView.AddNode(node);
             node.PortsUpdated += RefreshConnections;
             return node;
@@ -418,7 +428,15 @@ namespace Moths.Dialogues.Editor.Graphs
                 {
                     _graphView.LinkNodes(connection.key, connection.value);
                 }
-                catch { }
+                catch (System.Exception e) { Debug.LogError(e); }
+            }
+
+            foreach(var connection in _dialogue.Connections)
+            {
+                var outputPort = _graphView.GetPortByGuid(connection.key);
+                if (outputPort == null) { _dialogue.Connections.Remove(connection.key); EditorUtility.SetDirty(_dialogue); break; }
+                var inputPort = _graphView.GetPortByGuid(connection.value);
+                if (inputPort == null) { _dialogue.Connections.Remove(connection.key); EditorUtility.SetDirty(_dialogue); break; }
             }
         }
 

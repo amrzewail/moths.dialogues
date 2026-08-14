@@ -9,6 +9,8 @@ namespace Moths.Dialogues
         private Dialogue _currentDialogue;
         private DialogueElement _currentElement;
         private int _seqLineIndex;
+        private Dictionary<string, DialogueRunner> _nestedRunners = new();
+        private Stack<DialogueRunner> _nestedRunnersPool = new();
 
         public Dialogue Current => _currentDialogue;
 
@@ -19,10 +21,26 @@ namespace Moths.Dialogues
         public event Action<DialogueOutput> OnOutput;
         public event Action OnEnded;
 
+        private void Clear()
+        {
+            _currentDialogue = null;
+            _currentElement = default;
+            _seqLineIndex = 0;
+            _nestedRunners.Clear();
+            _nestedRunnersPool.Clear();
+            OnStarted = null;
+            OnLine = null;
+            OnChoices = null;
+            OnAction = null;
+            OnOutput = null;
+            OnEnded = null;
+        }
+
         public void Start(Dialogue dialogue)
         {
             _currentDialogue = dialogue;
             _seqLineIndex = 0;
+            _nestedRunners.Clear();
 
             _currentElement = dialogue.Start();
 
@@ -74,6 +92,11 @@ namespace Moths.Dialogues
                     
                     ProcessCurrentElement().Forget();
                     break;
+
+                case DialogueElement.ElementType.Dialogue:
+                    var nested = (DialogueNested)_currentElement;
+                    nested.Next(_nestedRunners[nested.Guid], choiceIndex);
+                    break;
             }
         }
 
@@ -82,6 +105,40 @@ namespace Moths.Dialogues
             _currentDialogue = null;
             _currentElement = default;
             OnEnded?.Invoke();
+        }
+
+        private DialogueRunner GetNestedRunner(string guid)
+        {
+            void NestedRunnerStartedCallback(string guid, Dialogue dialogue)
+            {
+
+            }
+
+            void NestedRunnerOutputCallback(string guid, DialogueOutput output)
+            {
+                _currentElement = _currentDialogue.Next(output.Guid);
+                ProcessCurrentElement().Forget();
+            }
+
+            void NestedRunnerEndedCallback(string guid)
+            {
+                _nestedRunners[guid].Clear();
+                _nestedRunnersPool.Push(_nestedRunners[guid]);
+                _nestedRunners.Remove(guid);
+            }
+
+            DialogueRunner runner = null;
+            if (!_nestedRunnersPool.TryPop(out runner)) runner = new();
+
+            runner.OnLine += OnLine;
+            runner.OnChoices += OnChoices;
+            runner.OnAction += OnAction;
+            
+            runner.OnStarted += dialogue => NestedRunnerStartedCallback(guid, dialogue);
+            runner.OnOutput += output => NestedRunnerOutputCallback(guid, output);
+            runner.OnEnded += () => NestedRunnerEndedCallback(guid);
+
+            return runner;
         }
 
         private async UniTask ProcessCurrentElement()
@@ -135,6 +192,15 @@ namespace Moths.Dialogues
                     string switchNextGuid = dialogueSwitch.Evaluate();
                     _currentElement = _currentDialogue.Next(switchNextGuid);
                     ProcessCurrentElement().Forget();
+                    break;
+
+                case DialogueElement.ElementType.Dialogue:
+                    var dialogueNested = (DialogueNested)_currentElement;
+                    if (!_nestedRunners.ContainsKey(dialogueNested.Guid))
+                    {
+                        _nestedRunners[dialogueNested.Guid] = GetNestedRunner(dialogueNested.Guid);
+                        _nestedRunners[dialogueNested.Guid].Start(dialogueNested.Dialogue);
+                    }
                     break;
 
                 case DialogueElement.ElementType.Output:

@@ -28,7 +28,6 @@ namespace Moths.Dialogues
             var instance = JsonUtility.FromJson<DialogueRandom>(serializationData);
             _tag = instance.Tag;
             _outputCount = instance._outputCount;
-            _outputs = instance._outputs != null ? new List<string>(instance._outputs) : new List<string>();
             AdjustOutputs();
         }
 

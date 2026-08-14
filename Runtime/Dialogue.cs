@@ -18,6 +18,7 @@ namespace Moths.Dialogues
         [SerializeField] List<DialogueJump> _jumps = new();
         [SerializeField] List<DialogueRandom> _randoms = new();
         [SerializeField] List<DialogueSwitch> _switches = new();
+        [SerializeField] List<DialogueNested> _dialogues = new();
 
         [SerializeField] SerializableDictionary<string, string> _connections = new();
 
@@ -31,6 +32,7 @@ namespace Moths.Dialogues
         public IReadOnlyList<DialogueJump> Jumps => _jumps;
         public IReadOnlyList<DialogueRandom> Randoms => _randoms;
         public IReadOnlyList<DialogueSwitch> Switches => _switches;
+        public IReadOnlyList<DialogueNested> Dialogues => _dialogues;
         public SerializableDictionary<string, string> Connections => _connections;
 
         public DialogueElement Start()
@@ -86,6 +88,10 @@ namespace Moths.Dialogues
             {
                 if (_switches[i].Guid == guid) return _switches[i];
             }
+            for (int i = 0; i < _dialogues.Count; i++)
+            {
+                if (_dialogues[i].Guid == guid) return _dialogues[i];
+            }
             return default;
         }
 
@@ -96,6 +102,11 @@ namespace Moths.Dialogues
                 if (_speakers[i].Guid == guid) return _speakers[i];
             }
             return default;
+        }
+
+        public void SortOutputs(Comparison<DialogueOutput> comparison)
+        {
+            _outputs.Sort(comparison);
         }
 
         public void AddSequence(DialogueSequence sequence) => _sequences.Add(sequence);
@@ -121,6 +132,9 @@ namespace Moths.Dialogues
 
         public void AddSwitch(DialogueSwitch switchData) => _switches.Add(switchData);
         public void RemoveSwitch(string guid) => _switches.RemoveAll(s => s.Guid == guid);
+
+        public void AddDialogue(DialogueNested dialogue) => _dialogues.Add(dialogue);
+        public void RemoveDialogue(string guid) => _dialogues.RemoveAll(d => d.Guid == guid);
 
         public void AddSpeaker(DialogueSpeaker speaker) => _speakers.Add(speaker);
         public void RemoveSpeaker(string guid) => _speakers.RemoveAll(s => s.Guid == guid);

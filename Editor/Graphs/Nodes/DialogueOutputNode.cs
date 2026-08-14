@@ -1,4 +1,5 @@
 using Moths.Graphs.Editor;
+using System;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
@@ -12,6 +13,8 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
         private Dialogue _dialogue;
         private Node _node;
         private DialogueOutput _output;
+
+        public event Action PositionChanged;
 
         public DialogueOutputNode(Dialogue dialogue, Node node, DialogueOutput output) : base()
         {
@@ -90,6 +93,8 @@ namespace Moths.Dialogues.Editor.Graphs.Nodes
             base.SetPosition(newPos);
             _node.position = newPos.position;
             _node.Update();
+
+            PositionChanged?.Invoke();
         }
     }
 }

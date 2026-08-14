@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Moths.Dialogues.Editor::Moths.Dialogues.Editor.DialogueGraphProperties
   _nodes:
   - guid: 65c0f7c7-4e2e-4eeb-86c7-d8c920c9e2a9
-    position: {x: 305.00003, y: 0.000035226345}
+    position: {x: 585.5, y: 17}
   - guid: 5ec2adda-0b35-4f3f-9785-9b0b032368d3
     position: {x: 818, y: 102.99999}
   - guid: 978c6a2c-0d94-4977-a7dd-09dfcf1bad7f
@@ -28,9 +28,9 @@ MonoBehaviour:
   - guid: d23b7291-2939-458f-b6fc-c04358b7ba62
     position: {x: 817.95844, y: 0.00003523502}
   - guid: c58c8f89-6ae7-4966-ae6d-f9d1fe865f10
-    position: {x: 163.2949, y: -7.636997}
+    position: {x: 164.71526, y: -0.9999995}
   - guid: efa82412-fe08-4ed5-96db-9237716a9cb6
-    position: {x: 488.00003, y: 1.0000458}
+    position: {x: 561.6052, y: -0.000004053116}
   - guid: bbeb61e1-8454-4343-b63c-aae438157b23
     position: {x: 738.07184, y: 205.50002}
   - guid: 4ae00bcf-7ecc-4085-85c8-1a31a1d83d07
@@ -39,6 +39,42 @@ MonoBehaviour:
     position: {x: 339, y: 148.00002}
   - guid: 4a06fa4e-2f30-4c1b-b98e-594c99c16455
     position: {x: 622, y: 331.86404}
+  - guid: afc93e78-f2d9-4057-adc7-527e9353298a
+    position: {x: 415, y: 0}
+  - guid: 700c9a1b-d93b-4574-891f-97f1a3af3620
+    position: {x: 666.5, y: 0}
+  - guid: 9aac1c27-707b-45ba-a118-73dcc9a60f75
+    position: {x: 175, y: 0}
+  - guid: f8784ccc-7f1a-4797-b787-0deec0342f70
+    position: {x: 578, y: 190}
+  - guid: 0362c540-66ca-4ee1-91a8-7052fd7af819
+    position: {x: 778.5, y: 190}
+  - guid: 8026d1af-0e1d-4ef3-b2b1-16e077ee5a71
+    position: {x: 582.5, y: 317}
+  - guid: 69fb888b-f5dd-4fa2-92e2-dd776d827cf9
+    position: {x: 783.5, y: 317}
+  - guid: d6395c16-a559-4758-8f31-4e565603d557
+    position: {x: 996.5, y: 190}
+  - guid: 4f5adb69-08f4-4d94-90aa-4e7aed88f0a0
+    position: {x: 500, y: 435}
+  - guid: e6e0c6ee-b0fb-4858-b355-46bf80be0510
+    position: {x: 701, y: 435}
+  - guid: c99d2416-107e-416b-9795-a638e22c207e
+    position: {x: 919, y: 435}
+  - guid: a320c5a7-d062-447b-b832-9925c3d79afe
+    position: {x: 789, y: 190}
+  - guid: 622d9453-b284-4fa0-88e6-5520fc524086
+    position: {x: 593, y: 339}
+  - guid: b46a6eb4-0078-46f0-a4d9-cca27cb14ed1
+    position: {x: 1012, y: 339}
+  - guid: 570fe103-e461-4a5f-b030-889f038b246c
+    position: {x: 804, y: 339}
+  - guid: 00a1213e-f805-4563-afec-65df7bbacfa6
+    position: {x: 327, y: 151.5}
+  - guid: fe22a5c3-d9ab-48a0-b551-a0688e06f139
+    position: {x: 91, y: 125.5}
+  - guid: cd65a6b8-420b-43f2-9eec-8409adf71eab
+    position: {x: 253, y: 154.5}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bb35f22350c6f747b017852da398676, type: 3}
   m_Name: New Dialogue 2
   m_EditorClassIdentifier: Moths.Dialogues::Moths.Dialogues.Dialogue
-  _startingGuid: c58c8f89-6ae7-4966-ae6d-f9d1fe865f10
+  _startingGuid: 9aac1c27-707b-45ba-a118-73dcc9a60f75
   _speakers:
   - _guid: 91b1c4e0-ba10-4af0-9733-b8ea4f7b8335
     _name:
@@ -85,204 +121,87 @@ MonoBehaviour:
     _data:
       _object:
         rid: -2
-  _sequences:
-  - _guid: 65c0f7c7-4e2e-4eeb-86c7-d8c920c9e2a9
-    _outputGuid: 34fce042-af0f-4287-9b91-78ab501bdc1b
-    _tag: hello
-    _lines:
-    - _dialogue: {fileID: 11400000}
-      _speakerGuid: 91b1c4e0-ba10-4af0-9733-b8ea4f7b8335
-      _line:
-        _useLocalization: 0
-        _text: hello
-        _localization:
-          m_TableReference:
-            m_TableCollectionName: 
-          m_TableEntryReference:
-            m_KeyId: 0
-            m_Key: 
-          m_FallbackState: 0
-          m_WaitForCompletion: 0
-          m_LocalVariables: []
-      _data:
-        _object:
-          rid: -2
-    - _dialogue: {fileID: 11400000}
-      _speakerGuid: b5ce392f-30a8-43dc-9e9d-02d413caf311
-      _line:
-        _useLocalization: 0
-        _text: 
-        _localization:
-          m_TableReference:
-            m_TableCollectionName: 
-          m_TableEntryReference:
-            m_KeyId: 0
-            m_Key: 
-          m_FallbackState: 0
-          m_WaitForCompletion: 0
-          m_LocalVariables: []
-      _data:
-        _object:
-          rid: -2
-    - _dialogue: {fileID: 11400000}
-      _speakerGuid: 91b1c4e0-ba10-4af0-9733-b8ea4f7b8335
-      _line:
-        _useLocalization: 0
-        _text: 
-        _localization:
-          m_TableReference:
-            m_TableCollectionName: 
-          m_TableEntryReference:
-            m_KeyId: 0
-            m_Key: 
-          m_FallbackState: 0
-          m_WaitForCompletion: 0
-          m_LocalVariables: []
-      _data:
-        _object:
-          rid: -2
-    - _dialogue: {fileID: 11400000}
-      _speakerGuid: b5ce392f-30a8-43dc-9e9d-02d413caf311
-      _line:
-        _useLocalization: 0
-        _text: 
-        _localization:
-          m_TableReference:
-            m_TableCollectionName: 
-          m_TableEntryReference:
-            m_KeyId: 0
-            m_Key: 
-          m_FallbackState: 0
-          m_WaitForCompletion: 0
-          m_LocalVariables: []
-      _data:
-        _object:
-          rid: -2
-  - _guid: c2aed127-d999-48a9-8435-5d8f481830b0
-    _outputGuid: b77118b2-6dbc-409c-9460-896c057fd32c
-    _tag: 
-    _lines: []
-  - _guid: 0be25b41-5079-4baa-bda9-a483ce8326a1
-    _outputGuid: 7cbaa5b5-b3d4-44b0-bc1e-5bd6a394a6dd
-    _tag: 
-    _lines: []
+  _sequences: []
   _choices:
-  - _guid: bfee96e2-3cae-4866-92b3-3e16083a3c81
+  - _guid: afc93e78-f2d9-4057-adc7-527e9353298a
     _tag: 
-    _choices:
-    - _guid: 15e1dfd0-197c-4908-98b6-065ddf4bd634
-      _line:
-        _useLocalization: 0
-        _text: 
-        _localization:
-          m_TableReference:
-            m_TableCollectionName: 
-          m_TableEntryReference:
-            m_KeyId: 0
-            m_Key: 
-          m_FallbackState: 0
-          m_WaitForCompletion: 0
-          m_LocalVariables: []
-    - _guid: d860a495-7f20-4244-9b1e-5c225d469150
-      _line:
-        _useLocalization: 0
-        _text: 
-        _localization:
-          m_TableReference:
-            m_TableCollectionName: 
-          m_TableEntryReference:
-            m_KeyId: 0
-            m_Key: 
-          m_FallbackState: 0
-          m_WaitForCompletion: 0
-          m_LocalVariables: []
-  _actions:
-  - _guid: efa82412-fe08-4ed5-96db-9237716a9cb6
-    _outputGuid: be404903-dd78-48df-a7ce-c888d8581641
-    _tag: 
-    _action:
+    _proceduralChoices:
       _object:
-        rid: 2960699131951841280
-  _outputs:
-  - _guid: 5ec2adda-0b35-4f3f-9785-9b0b032368d3
-    _name: Output
+        rid: 5430212243992608843
+    _choices: []
+    _proceduralGuid: a5049da1-9e7d-45e5-8026-df44125fc23c
+  - _guid: 9aac1c27-707b-45ba-a118-73dcc9a60f75
     _tag: 
-  - _guid: d23b7291-2939-458f-b6fc-c04358b7ba62
-    _name: Output
-    _tag: 
-  _conditions:
-  - _guid: 4ae00bcf-7ecc-4085-85c8-1a31a1d83d07
-    _trueOutputGuid: 6efb6dae-cdf0-4d81-8508-b67db7e07684
-    _falseOutputGuid: 08c78e91-02ca-44a0-8e5a-cd1ebd167d5f
-    _tag: 
-    _condition:
+    _proceduralChoices:
       _object:
         rid: -2
-  _jumps:
-  - _guid: bbeb61e1-8454-4343-b63c-aae438157b23
-    _outputGuid: 65c0f7c7-4e2e-4eeb-86c7-d8c920c9e2a9
-    _targetTag: hello
+    _choices:
+    - _guid: 5ef31915-98f0-4db6-ae7b-baa2996a0b97
+      _line:
+        _useLocalization: 0
+        _text: Ask for directions
+        _localization:
+          m_TableReference:
+            m_TableCollectionName: 
+          m_TableEntryReference:
+            m_KeyId: 0
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+      _data:
+        _object:
+          rid: -2
+    - _guid: 429b08ea-17f4-44ed-96d5-54141fb5650c
+      _line:
+        _useLocalization: 0
+        _text: Never mind
+        _localization:
+          m_TableReference:
+            m_TableCollectionName: 
+          m_TableEntryReference:
+            m_KeyId: 0
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+      _data:
+        _object:
+          rid: -2
+    _proceduralGuid: 7affba09-4cea-4141-a02c-8cf867c06506
+  _actions: []
+  _outputs:
+  - _guid: 700c9a1b-d93b-4574-891f-97f1a3af3620
+    _name: Output
+    _tag: 
+  _conditions: []
+  _jumps: []
   _randoms:
-  - _guid: 978c6a2c-0d94-4977-a7dd-09dfcf1bad7f
+  - _guid: fe22a5c3-d9ab-48a0-b551-a0688e06f139
     _tag: 
-    _outputCount: 4
+    _outputCount: 3
     _outputs:
-    - 569a4de8-084f-4f4a-b464-69a536d0c8a4
-    - 5cf986c7-ed34-4dc0-9a85-e2ca3b6f591d
-    - 3e29f1a6-0142-45e9-b4eb-c7c785b9828c
-    - 6c4cabd4-195a-4c06-8edc-c0afd8cd5dc0
-  - _guid: cf29ee02-6295-4646-b60c-7ebb6b87ae10
+    - 59fc2297-9234-40fb-ad56-46ba3acb2338
+    - 753c067b-e530-4ce9-a704-ee7f10db116a
+    - 075f1b41-12e1-484f-be30-1c67549ce5d0
+  _switches: []
+  _dialogues:
+  - _guid: cd65a6b8-420b-43f2-9eec-8409adf71eab
     _tag: 
-    _outputCount: 5
-    _outputs:
-    - 8b874cf9-c8e4-4606-9d3f-e109d3e3119b
-    - d2c1df7b-8d2e-4545-9d8b-528981ad312b
-    - ce1b74be-30d2-4592-943b-e0df8e937e58
-    - 59ca2ef5-47a3-4372-a8dc-7be3195ace65
-    - da62e790-4c58-4f6d-8454-e8b80c55001d
-  - _guid: c58c8f89-6ae7-4966-ae6d-f9d1fe865f10
-    _tag: asd
-    _outputCount: 5
-    _outputs:
-    - 29b606be-afb8-4954-8e95-e12343df6c23
-    - a2e63323-0589-4c4b-a2cb-c8ae8069add0
-    - 399932a0-aefb-4e6a-8035-94ef0125a22b
-    - 9d981ae1-3613-45f8-bc18-4c39fb840e95
-    - 66e1bb54-346d-44d7-93d3-3af5c13a0f73
-  _switches:
-  - _guid: 4a06fa4e-2f30-4c1b-b98e-594c99c16455
-    _tag: 
-    _count: 2
-    _cases:
-    - _condition:
-        _object:
-          rid: -2
-      _outputGuid: 3a6f2e14-b7ce-4991-a8dd-00027da46214
-    - _condition:
-        _object:
-          rid: -2
-      _outputGuid: 626e7ffd-6f02-44c3-9a53-ecfa93fd7a78
-    _defaultOutputGuid: 3313378a-19de-418b-8214-e882ccd49583
+    _dialogue: {fileID: 0}
   _connections:
     _pairs:
-    - key: 15e1dfd0-197c-4908-98b6-065ddf4bd634
-      value: d23b7291-2939-458f-b6fc-c04358b7ba62
-    - key: 34fce042-af0f-4287-9b91-78ab501bdc1b
-      value: efa82412-fe08-4ed5-96db-9237716a9cb6
-    - key: 29b606be-afb8-4954-8e95-e12343df6c23
-      value: bbeb61e1-8454-4343-b63c-aae438157b23
-    - key: d860a495-7f20-4244-9b1e-5c225d469150
-      value: bbeb61e1-8454-4343-b63c-aae438157b23
-    - key: 9d981ae1-3613-45f8-bc18-4c39fb840e95
-      value: 0be25b41-5079-4baa-bda9-a483ce8326a1
-    - key: 7cbaa5b5-b3d4-44b0-bc1e-5bd6a394a6dd
-      value: c2aed127-d999-48a9-8435-5d8f481830b0
+    - key: 5ef31915-98f0-4db6-ae7b-baa2996a0b97
+      value: afc93e78-f2d9-4057-adc7-527e9353298a
+    - key: f0b73b45-5b23-44f9-af0d-b752c1eab7a9
+      value: 700c9a1b-d93b-4574-891f-97f1a3af3620
+    - key: a5049da1-9e7d-45e5-8026-df44125fc23c
+      value: 700c9a1b-d93b-4574-891f-97f1a3af3620
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 2960699131951841280
-      type: {class: WaitAction, ns: Moths.Dialogues.Actions, asm: Moths.Dialogues}
-      data:
-        _time: 5
+    - rid: 5430212243992608843
+      type: {class: SampleProceduralChoices, ns: Moths.Dialogues.Samples, asm: Assembly-CSharp}
+      data: 

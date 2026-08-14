@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bb35f22350c6f747b017852da398676, type: 3}
-  m_Name: New Dialogue
+  m_Name: Nested
   m_EditorClassIdentifier: Moths.Dialogues::Moths.Dialogues.Dialogue
   _startingGuid: 
   _speakers:
